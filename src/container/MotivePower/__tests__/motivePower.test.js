@@ -10,7 +10,7 @@ import configureStore from 'redux-mock-store';
 // import { createForms } from 'react-redux-form';
 
 // import MotivePower from '../motivePower';
-// import { MotivePower } from '../motivePower';
+import { MotivePower } from '../motivePower';
 
 import 'core-js/es6/map';
 import 'core-js/es6/set';
@@ -76,6 +76,22 @@ Enzyme.configure({ adapter: new Adapter() });
 // 	});
 // });
 
+
+describe( 'The component should exist', () => {
+    // var wrapper;
+
+    // beforeEach( () => {
+    //     wrapper = shallow(<MotivePower />)
+    // });
+
+    it( 'Should not be null', () => {
+        // expect(wrapper).not.toBeNull();
+    });
+
+    it( 'Should on include one (1) instance', () => {
+        // expect( wrapper );
+    });
+})
 
 
 describe( 'MotivePower rendering', () => {
