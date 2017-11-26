@@ -4,18 +4,19 @@ import React from 'react';
 import { Provider } from 'react-redux'
 
 import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 // import { createForms } from 'react-redux-form';
 
 // import MotivePower from '../motivePower';
-import { MotivePower } from '../motivePower';
+import ConnectedMotivePower, { MotivePower } from '../motivePower';
 
-import 'core-js/es6/map';
-import 'core-js/es6/set';
+// import 'core-js/es6/map';
+// import 'core-js/es6/set';
 
-import 'raf/polyfill';
+// import 'raf/polyfill';
 
 
 const middleware = [];
@@ -55,6 +56,50 @@ const defaultState = {
 // console.log( testStore.getState() );
 // console.log( testStore.getActions() );
 
+const createTestProps = () => ({
+    handleButtonClick: () => {},
+    motivePower: {
+        id: "",
+        scac:  "",
+        number:  "",
+        unitType:  "",
+        comment:  "",
+        model: {
+            manufacturer: "",
+        },
+        decoder: {
+            address:  "4455",
+            family:  "",
+            model:  "",
+            comment:  "",
+            filename:  "",
+        },
+    },
+    actions: {
+                resetToDefaults:            () => {},
+                // handleRoadNameChange:       () => {},
+                // handleRoadNumberChange:     () => {},
+                // handleUnitIdChange:         () => {},
+                // handleCommentChange:        () => {},
+                // handleUnitTypeChange:       () => {},
+                // handleManufacturerChange:   () => {},
+                // handleDecoderAddressChange: (e) => {console.log(e)},
+
+                changeDecoderAddress:       (e) => {console.log('hook(): ', e)},
+                changeUnitId:               (e) => {},
+                changeRoadName:             (e) => {},
+                changeRoadNumber:           (e) => {},
+                changeComment:              (e) => {},
+                changeUnitType:             (e) => {},
+                changeManufacturer:         (e) => {},
+             },
+});
+
+
+
+
+
+
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -78,60 +123,356 @@ Enzyme.configure({ adapter: new Adapter() });
 
 
 describe( 'The component should exist', () => {
-    // var wrapper;
+    var wrapper;
 
-    // beforeEach( () => {
-    //     wrapper = shallow(<MotivePower />)
-    // });
+    beforeEach( () => {
+        // wrapper = shallow(<MotivePower />)
+        wrapper = shallow(<MotivePower {...createTestProps()} />)
+        //
+    });
 
     it( 'Should not be null', () => {
-        // expect(wrapper).not.toBeNull();
+        expect(wrapper).not.toBeNull();
     });
 
     it( 'Should on include one (1) instance', () => {
-        // expect( wrapper );
+        // console.log( wrapper );
+        expect( wrapper.find('input')).toHaveLength(7);
+        expect( wrapper.find('button')).toHaveLength(1);
     });
 })
 
 
-describe( 'MotivePower rendering', () => {
+describe( 'Rendering of Component (MotivePower)', () => {
 
-    it( 'Should render ID label ');
-    it( 'Should render an ID field');
+    var wrapper;
+
+    beforeEach( () => {
+        // wrapper = shallow(<MotivePower />)
+        wrapper = shallow(<MotivePower {...createTestProps()} />)
+        //
+    });
+
+    describe( 'Model ID (key)', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#unit_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render ID label (Unit ID)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Unit ID" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text ()', () => {
+            expect( props ).toMatchObject( {placeholder: 'Unit ID'});
+        });
+    });
 
     // --- Road Name ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'Road Name', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#roadname_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (Road Name)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Road Name" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (Road Name)', () => {
+            expect( props ).toMatchObject( {placeholder: 'Road Name'});
+        });
+
+    });
 
     // --- Road Number ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'Road Number', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#roadnumber_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (Road Name)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Road Number" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (Road Number)', () => {
+            expect( props ).toMatchObject( {placeholder: 'Road Number'});
+        });
+    });
 
     // --- Unit Type ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'Unit Type', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#unittype_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (Unit Type)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Unit Type" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (Unit Type)', () => {
+            expect( props ).toMatchObject( {placeholder: 'Unit Type'});
+        });
+    });
 
     // --- Comment ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'Model Comment', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#comment_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (Comment)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Comment" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (Comment)', () => {
+            expect( props ).toMatchObject( {placeholder: 'Comment'});
+        });
+    });
 
     // --- Model Manufacturer ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'Model Manufacturer', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#manufacturer_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (Manufacturer)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "Manufacturer" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (Manufacturer)', () => {
+            expect( props ).toMatchObject( {placeholder: 'Manufacturer'});
+        });
+    });
 
     // --- DCC Address ---
-    it( 'Should render a  label');
-    it( 'Should render a  text input field');
+    describe( 'DCC Address', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#dccaddress_id');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+        })
+
+        it( 'Should render a label (DCC Address)', () => {
+            expect( element.closest( 'label').text() ).toMatch( "DCC Address" );
+        });
+
+        it( 'Should render a text input field', () => {
+            expect( props ).toMatchObject( {type: 'text' });
+        });
+
+        it( 'Should have placeholder text (DCC Address)', () => {
+            expect( props ).toMatchObject( {placeholder: 'DCC Address'});
+        });
+    })
 
     // --- Reset to Default ---
-    it( 'Should render a  button');
+    describe( 'Reset to Default button', () => {
+        var element;
+        var props;
+
+        beforeEach( () => {
+            element = wrapper.find( '#reset');
+            expect( element ).not.toBeNull();
+
+            props = element.props();
+            // console.log( props )
+        })
+
+        it( 'Should render a  button', () => {
+            // expect( props ).toMatchObject( {type: 'submit' });
+            expect( props ).toMatchObject( {type: 'button' });
+        });
+
+        it( 'Should have the label (Reset to Default)', () => {
+            expect( props ).toMatchObject( {children: 'Reset to Default'});
+        });
+
+    })
 });
+
+
+
+
+
+
 
 
 describe( 'Interaction', () => {
 
-    describe( 'Reset to Default', () => {
-        it( 'Should reset form fields to blanks' );
+    var   wrapper;
+    var   props;
+    const fnArray = [
+        ['handleButtonClick',''],
+        ['handleRoadNameChange',''],
+        ['handleRoadNumberChange',''],
+        ['handleUnitIdChange',''],
+        ['handleCommentChange',''],
+        ['handleUnitTypeChange',''],
+        ['handleManufacturerChange',''],
+        ['handleDecoderAddressChange',''],
+    ];
+    var spyMap = new Map( fnArray );
+
+    for (var key of spyMap.keys()) {
+        // console.log(key);
+        spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
+    }
+
+    beforeEach( () => {
+        // need to place this onClick on the button inside the component
+        // wrapper = shallow(<MotivePower {...props} handleClick={jest.fn()}/>)
+        wrapper = shallow(<MotivePower {...createTestProps()} />)
+        //
     });
+
+    describe( 'onChange functions are properly mapped', () => {
+
+        test( 'change dcc address', () => {
+            // var element   = wrapper.find( '#dccaddress_id');
+            // element.value = 'New value'
+            wrapper.find( '#dccaddress_id').simulate('change', { target: { value: "Mock: dccaddress" }})
+            // console.log( "foo: ", element.value )
+            expect( spyMap.get( 'handleDecoderAddressChange' )).toHaveBeenCalledTimes(1);
+        });
+
+        test( 'change model comment', () => {
+
+            wrapper.find( '#comment_id').simulate('change', { target: { value: "comment" }})
+            expect( spyMap.get( 'handleCommentChange' )).toHaveBeenCalledTimes(1);
+        });
+
+        test( 'change unit type', () => {
+
+            wrapper.find( '#unittype_id').simulate('change', { target: { value: "unit type" }})
+            expect( spyMap.get( 'handleUnitTypeChange' )).toHaveBeenCalledTimes(1);
+        });
+
+        test( 'change unit id', () => {
+
+            wrapper.find( '#unit_id').simulate('change', { target: { value: "unit id" }})
+            expect( spyMap.get( 'handleUnitIdChange' )).toHaveBeenCalledTimes(1);
+        });
+
+        test( 'change manufacturer', () => {
+
+            wrapper.find( '#manufacturer_id').simulate('change', { target: { value: "model manufacturer" }})
+            expect( spyMap.get( 'handleManufacturerChange' )).toHaveBeenCalledTimes(1);
+        });
+        // test( '' );
+        // test( '' );
+
+        afterAll( () => {
+            for (var key of spyMap.keys()) {
+                // expect( spyMap.get( key )).toHaveBeenCalledTimes(1);
+                // console.log( key )
+                expect( spyMap.get( key )).toHaveBeenCalled();
+            }        
+        });
+    })
+
+
+    describe( 'Reset to Default', () => {
+
+        beforeEach( () => {
+
+            var x = wrapper.find( '#reset').props();
+        })
+
+        it( 'Should reset form fields to blanks', () => {
+            wrapper.find( '#reset').simulate( 'click' );
+            // expect( spy ).toHaveBeenClicked;
+            expect( spyMap.get( 'handleButtonClick' )).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe( 'Changing Road name or number also changes unit id', () => {
+
+        describe( 'Changes to Road Name', () => {
+            it( 'Changes to road name', () => {
+                wrapper.find( '#roadname_id').simulate('change', { target: { value: "Mock: road name" }})
+                // expect( true ).toBe(false)
+            });
+
+            it( 'Unit id updates with changes to road name', () => {
+                // expect( true ).toBe(false)
+            });
+        })
+
+        describe( 'Changes to Road Number', () => {
+            it( 'Changes to road name', () => {
+                // expect( true ).toBe(false)
+                wrapper.find( '#roadnumber_id').simulate('change', { target: { value: "Mock: road number" }})
+            });
+
+            it( 'Unit id updates with changes to road name', () => {
+                // expect( true ).toBe(false)
+            });
+        })
+    });
+
+    
 });
 

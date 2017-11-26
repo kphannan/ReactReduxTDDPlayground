@@ -1,10 +1,42 @@
+// @flow
 
+type FlowAction = {
+    type: string,
+    error: ?boolean,
+    payload?: ?{
+        id?: ?string,
+        scac: ?string,
+        number: ?number,
+        manufacturer: ?string,
+        dccAddress: ?string,
+        comment: ?string,
+        unitType: ?string
+    },
+    meta: ?any
+};
 
+export type MotivePowerState = {
+    id: string,
+    scac:  string,
+    number:  number,
+    unitType:  string,
+    comment:  string,
+    model: {
+        manufacturer: string,
+    },
+    decoder: {
+        dccAddress:  string,
+        family:  string,
+        model:  string,
+        comment:  string,
+        filename:  string
+    }
+};
 
-const defaultState = {
+var defaultState: MotivePowerState = {
     id: "",
     scac:  "",
-    number:  "",
+    number:  0,
     unitType:  "",
     comment:  "",
     model: {
@@ -15,8 +47,8 @@ const defaultState = {
         family:  "",
         model:  "",
         comment:  "",
-        filename:  "",
-    },
+        filename:  ""
+    }
 };
 
 // Use redux-actions
@@ -38,46 +70,46 @@ export const motivePowerActions = {
         payload: defaultState
     }),
 
-    changeComment: (comment) => ({
+    changeComment: (comment: string) => ({
         type: 'MOTIVE_POWER_COMMENT_CHANGE',
         payload: {
             comment: comment
         }
     }),
 
-    changeUnitType: (unitType) => ({
+    changeUnitType: (unitType: string) => ({
         type: 'MOTIVE_POWER_UNIT_TYPE_CHANGE',
         payload: {
             unitType: unitType
         }
     }),
 
-    changeDecoderAddress: (dccAddress) => ({
+    changeDecoderAddress: (dccAddress: string) => ({
         type: 'MOTIVE_POWER_DECODER_ADDRESS_CHANGE',
         payload: {
             dccAddress: dccAddress
         }
     }),
 
-    changeManufacturer: (manufacturer) => ({
+    changeManufacturer: (manufacturer: string) => ({
         type: 'MOTIVE_POWER_MANUFACTURER_CHANGE',
         payload: {
             manufacturer: manufacturer
         }
     }),
 
-    changeRoadName: (scac, number) => ({
+    changeRoadName: (scac: string, number: number) => ({
         type: 'MOTIVE_POWER_ROAD_NAME_CHANGE',
         payload: {
-            roadName: scac,
+            scac: scac,
             id: `${scac} ${number}`
         }
     }),
 
-    changeRoadNumber: (scac, number) => ({
+    changeRoadNumber: (scac: string, number: number) => ({
         type: 'MOTIVE_POWER_ROAD_NUMBER_CHANGE',
         payload: {
-            roadNumber: number,
+            number: number,
             id: `${scac} ${number}`
         }
     }),
@@ -87,7 +119,7 @@ export const motivePowerActions = {
 // ============================================================================
 // ============================================================================
 // ----- Reducer -----
-const motivePower = (state = defaultState, action = {type: 'NOOP'} ) => {
+const motivePower = (state: MotivePowerState = defaultState, action: FlowAction = {type: 'NOOP'} ) => {
 
     switch ( action.type ) {
 
@@ -99,7 +131,8 @@ const motivePower = (state = defaultState, action = {type: 'NOOP'} ) => {
 
         case 'MOTIVE_POWER_DECODER_ADDRESS_CHANGE':
             return Object.assign( {}, state
-                                 ,{decoder: {address: action.payload.dccAddress }});
+                                 ,{decoder: action.payload });
+                                 // ,{decoder: {address: action.payload.dccAddress }});
 
         case 'MOTIVE_POWER_UNIT_TYPE_CHANGE':
             return Object.assign( {}, state
@@ -111,13 +144,16 @@ const motivePower = (state = defaultState, action = {type: 'NOOP'} ) => {
 
         case 'MOTIVE_POWER_MANUFACTURER_CHANGE':
             return Object.assign( {}, state
-                                 ,{model: {manufacturer: action.payload.manufacturer }});
+                                 ,{model: action.payload });
+                                 // ,{model: {manufacturer: action.payload.manufacturer }});
 
         case 'MOTIVE_POWER_ROAD_NUMBER_CHANGE':
-            return Object.assign( {}, state, {number: action.payload.roadNumber, id:  action.payload.id});
+            return Object.assign( {}, state, action.payload );
+            // return Object.assign( {}, state, {number: action.payload.roadNumber, id:  action.payload.id});
 
         case 'MOTIVE_POWER_ROAD_NAME_CHANGE':
-            return Object.assign({}, state, {scac: action.payload.roadName, id:  action.payload.id});
+            return Object.assign({}, state, action.payload );
+            // return Object.assign({}, state, {scac: action.payload.roadName, id:  action.payload.id});
 
         default:        
             return state;

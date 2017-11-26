@@ -6,7 +6,7 @@ import reducer, { motivePowerActions } from '../motivePower'
 const defaultState = {
     id: "",
     scac:  "",
-    number:  "",
+    number:  0,
     unitType:  "",
     comment:  "",
     model: {
@@ -97,7 +97,7 @@ describe( 'Action creators', () => {
         expect( motivePowerActions.changeRoadName('EL', 9999 ))
               .toEqual( {type: 'MOTIVE_POWER_ROAD_NAME_CHANGE',
                          payload: {
-                            roadName: 'EL',
+                            scac: 'EL',
                             id: 'EL 9999' 
                          }
                         });
@@ -107,7 +107,7 @@ describe( 'Action creators', () => {
         expect( motivePowerActions.changeRoadNumber('xx', 1234 ))
               .toMatchObject( {type: 'MOTIVE_POWER_ROAD_NUMBER_CHANGE',
                                payload: {
-                                  roadNumber: 1234,
+                                  number: 1234,
                                   id: 'xx 1234' 
                                }
                         });
@@ -168,7 +168,7 @@ describe( 'Reducer', () => {
 
         expect( state ).toHaveProperty( 'id', '' )
         expect( state ).toHaveProperty( 'scac', '' )
-        expect( state ).toHaveProperty( 'number', '' )
+        expect( state ).toHaveProperty( 'number', 0 )
         expect( state ).toHaveProperty( 'unitType', '' )
         expect( state ).toHaveProperty( 'comment', '' )
         expect( state ).toHaveProperty( 'model')
@@ -253,7 +253,7 @@ describe( 'Reducer', () => {
         var state = reducer( state
                             ,motivePowerActions.changeDecoderAddress( "5544", state ));
 
-        expect( state ).toHaveProperty( 'decoder.address', '5544')
+        expect( state ).toHaveProperty( 'decoder.dccAddress', '5544')
         expect( state ).toHaveProperty( 'scac', 'abcd' )
         expect( state ).toHaveProperty( 'number', 5680 )
         expect( state ).toHaveProperty( 'id', '1234' )
