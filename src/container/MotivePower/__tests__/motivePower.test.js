@@ -390,6 +390,26 @@ describe( 'Interaction', () => {
 
     describe( 'onChange functions are properly mapped', () => {
 
+        test( 'change road number`', () => {
+
+            var element;
+            element = wrapper.find( '#roadnumber_id');
+            expect( element ).not.toBeNull();
+
+            element.simulate('change', { target: { value: "roadnumber" }})
+            expect( spyMap.get( 'handleRoadNumberChange' )).toHaveBeenCalledTimes(1);
+        });
+
+        test( 'change road name`', () => {
+
+            var element = wrapper.find( '#roadname_id');
+            expect( element ).not.toBeNull();
+
+            element.simulate('change', { target: { value: "roadname" }})
+            expect( spyMap.get( 'handleRoadNameChange' )).toHaveBeenCalledTimes(1);
+        });
+
+
         test( 'change dcc address', () => {
             // var element   = wrapper.find( '#dccaddress_id');
             // element.value = 'New value'
@@ -447,7 +467,7 @@ describe( 'Interaction', () => {
             expect( spyMap.get( 'handleButtonClick' )).toHaveBeenCalledTimes(1);
         });
     });
-
+    
     describe( 'Changing Road name or number also changes unit id', () => {
 
         describe( 'Changes to Road Name', () => {
@@ -473,6 +493,5 @@ describe( 'Interaction', () => {
         })
     });
 
-    
 });
 

@@ -36,7 +36,7 @@ export type MotivePowerState = {
 var defaultState: MotivePowerState = {
     id: "",
     scac:  "",
-    number:  0,
+    number:  "222",
     unitType:  "",
     comment:  "",
     model: {
