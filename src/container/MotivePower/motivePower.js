@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Form, Control, Errors, actions } from 'react-redux-form'
+
+
 import { motivePowerActions } from '../../reducer/motivePower'
 
 
@@ -72,13 +75,55 @@ export class MotivePower extends Component {
         this.props.actions.changeManufacturer( event.target.value );
     }
 
-    // handleDecoderAddressChange(event) {
-    //  this.props.actions.changeDecoderAddress( event.target.value, this.props.motivePower );
-    // }
 
 
 
-
+                            // <Control.text
+                            //     model="owner.ldapId"
+                            //     id="owner.ldapId"
+                            //     style={{
+                            //         marginTop: '0px'
+                            //     }}
+                            //     validateOn="change"
+                            //     asyncValidateOn="change"
+                            //     asyncValidators={{
+                            //          validLdap: (value, done) => {
+                            //              let self = this;
+                            //              const MINIMUM_VALID_LDAP_LENGTH = 5;
+                            //              if(value.length >= MINIMUM_VALID_LDAP_LENGTH) {
+                            //                  appActions.getUserName(value)
+                            //                      .then((response) => {
+                            //                      const SUCCESS_STATUS_CODE = 200;
+                            //                      if (response.status === SUCCESS_STATUS_CODE) {
+                            //                          let name = response.data.name;
+                            //                          self.formThis.props.dispatchLdapFetchDataSuccess(name);
+                            //                          done(true);
+                            //                          self.formThis.props.clearModelValidation('owner.ldapId');
+                            //                      } else {
+                            //                          self.formThis.props.dispatchLdapFetchDataSuccess(globalConstants.emdash);
+                            //                          done(false);
+                            //                      }
+                            //                  })
+                            //                      .catch((err) => {
+                            //                      self.formThis.props.dispatchLdapFetchDataSuccess(globalConstants.emdash);
+                            //                      done(false);
+                            //                      // This needs to be removed once this issue is solved
+                            //                      // https://github.com/davidkpiano/react-redux-form/issues/1013
+                            //                      self.formThis.props.clearRequiredSyncValidation('owner.ldapId');
+                            //                  })
+                            //              } else if (value.length === 0){
+                            //                  self.formThis.props.dispatchLdapFetchDataSuccess(globalConstants.emdash);
+                            //                  done(true);
+                            //              } else {
+                            //                  self.formThis.props.dispatchLdapFetchDataSuccess(globalConstants.emdash);
+                            //                  done(false);
+                            //              }
+                            //          }
+                            //      }}
+                            //     validators={{
+                            //         required: (val) => val.length
+                            //     }}
+                            // />
 
 
     render() {
@@ -87,6 +132,7 @@ export class MotivePower extends Component {
         // console.log( this.props.motivePower.decoder.address );
 
         return (
+            <Form model="motivePower" autoComplete="off">
             <div>
                 <label>Unit ID
                     <input  type='text'   
@@ -96,64 +142,118 @@ export class MotivePower extends Component {
                             placeholder='Unit ID'
                     />
                 </label>
+                <br />
                 <label>Road Name
-                    <input  type='text'   
+                    <Control.text
                             id='roadname_id'     
                             onChange={this.handleRoadNameChange.bind(this)}
-                            value={this.props.motivePower.scac}
+                            model=".scac"
                             placeholder='Road Name'
+                            validators={{
+                                required: (val) => val.length
+                            }}
                     />
                 </label>
+                <br />
                 <label>Road Number
-                    <input  type='text'   
+                    <Control.text
                             id='roadnumber_id'   
                             onChange={this.handleRoadNumberChange.bind(this)}
                             value={this.props.motivePower.number}
+                            model=".number"
                             placeholder='Road Number'
+                            validators={{
+                                required: (val) => val.length
+                            }}
                     />
                 </label>
+                <br />
+                
                 <label>Unit Type
-                    <input  type='text'   
+                    <Control.text
                             id='unittype_id'
                             onChange={this.handleUnitTypeChange.bind(this)}
-                            value={this.props.motivePower.unitType}
+                            model=".unitType"
                             placeholder='Unit Type'
                     />
                 </label>
+                <br />
                 <label>Manufacturer
-                    <input  type='text'   
+                    <Control.text
                             id='manufacturer_id'
                             onChange={this.handleManufacturerChange.bind(this)}
-                            value={this.props.motivePower.model.manufacturer}
+                            model=".model.manufacturer"
                             placeholder='Manufacturer'
                     />
                 </label>
+                <br />
 
                 <label>DCC Address
-                    <input  type='text'
+                    <Control.text
                             id='dccaddress_id'
                             onChange={this.handleDecoderAddressChange.bind(this)}
-                            value={this.props.motivePower.decoder.address}
-                            placeholder='DCC Address'/>
+                            model=".decoder.address"
+                            placeholder='DCC Address'
+                            validators={{
+                                required: (val) => val.length
+                            }}
+                    />
                 </label>
+                <br />
 
                 <label>Comment
-                    <input  type='text'
+                    <Control.text
                             id='comment_id'
                             onChange={this.handleCommentChange.bind(this)}
-                            value={this.props.motivePower.comment}
+                            model=".comment"
                             placeholder='Comment'/>
                 </label>
+                <br />
 
                 <button type='button'
                         onClick={this.handleButtonClick.bind(this)}
                         id='reset'>
                     Reset to Default
                 </button>
+
+
+                <Errors
+                    model=".scac"
+                    show={{pristine: false}}
+                    wrapper={(props) => <div className="text-input-container error">{props.children}</div>}
+                    component={(props) => <p className="error-msg">{props.children}</p>}
+                    messages={{
+                        validLdap: 'LDAP is invalid',
+                        required: 'Locomotive road name is required'
+                    }}
+                />
+                <Errors
+                    model=".number"
+                    show={{pristine: false}}
+                    wrapper={(props) => <div className="text-input-container error">{props.children}</div>}
+                    component={(props) => <p className="error-msg">{props.children}</p>}
+                    messages={{
+                        validLdap: 'LDAP is invalid',
+                        required: 'Locomotive number is required'
+                    }}
+                />
+                <Errors
+                    model=".decoder.address"
+                    show={{pristine: false}}
+                    wrapper={(props) => <div className="text-input-container error">{props.children}</div>}
+                    component={(props) => <p className="error-msg">{props.children}</p>}
+                    messages={{
+                        validLdap: 'LDAP is invalid',
+                        required: 'Decoder address is required'
+                    }}
+                />
             </div>
+            </Form>
         );
     }
 };
+
+
                 // <input type='submit' id='reset'>Reset to Default</input>
 
 // export default MotivePower;

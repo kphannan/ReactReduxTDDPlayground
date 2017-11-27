@@ -6,7 +6,7 @@ import motivePower from '../reducer/motivePower'
 
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import { createForms } from 'react-redux-form';
+import { createForms } from 'react-redux-form';
 
 // import { loadState, saveState } from './localStorage';
 // import { throttle } from 'lodash/throttle';
@@ -40,11 +40,11 @@ const configureStore = () => {
     // }
 
     const rootReducer = combineReducers({
-        motivePower,
-        // ...createForms({
-        //         // owner,
-        //         motivePower,
-        // })
+        // motivePower,
+        ...createForms({
+                // owner,
+                motivePower,
+        })
     });
 
     let middleware = [
