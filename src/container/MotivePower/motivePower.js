@@ -2,6 +2,10 @@
 
 import React, { Component } from 'react'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { motivePowerActions } from '../../reducer/motivePower'
+
 
 
 export class MotivePower extends Component {
@@ -152,4 +156,19 @@ export class MotivePower extends Component {
 };
                 // <input type='submit' id='reset'>Reset to Default</input>
 
-export default MotivePower;
+// export default MotivePower;
+
+function mapStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions:   bindActionCreators(motivePowerActions, dispatch),
+        // fetchData: (id) => dispatch(id)
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MotivePower)
+// export default connect(mapStateToProps)(MotivePower)
+
+
