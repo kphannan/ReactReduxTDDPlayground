@@ -54,7 +54,7 @@ export class MotivePower extends Component {
 
     handleRoadNumberChange(event) {
 
-        this.props.actions.changeRoadNumber( event.target.value, this.props.motivePower.number );
+        this.props.actions.changeRoadNumber( this.props.motivePower.scac, event.target.value );
     }
 
     handleCommentChange(event) {

@@ -12,26 +12,32 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // import { throttle } from 'lodash/throttle';
 
 
+
+
 const loadState = () => {
 
     const persistedState = {
-        // tasks:       initialTaskState,
         // owner:       initialOwnerState,
-        // application: initialApplicationState
     };
 
     return persistedState;
 };
 
 
+// var loadState;
+
+// if ( process.env.NODE_ENV === 'development' ) {
+    // loadState = loadStaticState();
+// }
+
 
 
 const configureStore = () => {
     var persistedState;
 
-    if ( process.env.NODE_ENV === 'development' ) {
+    // if ( process.env.NODE_ENV === 'development' ) {
         persistedState = loadState();
-    }
+    // }
 
     const rootReducer = combineReducers({
         motivePower,
@@ -47,9 +53,9 @@ const configureStore = () => {
 
     // Include logger only in dev/qa
     // if ( process.env.NODE_ENV !== 'production' ) {
-    if ( process.env.NODE_ENV === 'development' ) {
+    // if ( process.env.NODE_ENV === 'development' ) {
         middleware.push( logger );
-    }
+    // }
 
     const store = createStore(
         rootReducer,

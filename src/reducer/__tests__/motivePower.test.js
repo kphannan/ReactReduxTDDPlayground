@@ -6,7 +6,7 @@ import reducer, { motivePowerActions } from '../motivePower'
 const defaultState = {
     id: "",
     scac:  "",
-    number:  0,
+    number:  "",
     unitType:  "",
     comment:  "",
     model: {
@@ -168,7 +168,7 @@ describe( 'Reducer', () => {
 
         expect( state ).toHaveProperty( 'id', '' )
         expect( state ).toHaveProperty( 'scac', '' )
-        expect( state ).toHaveProperty( 'number', 0 )
+        expect( state ).toHaveProperty( 'number', "" )
         expect( state ).toHaveProperty( 'unitType', '' )
         expect( state ).toHaveProperty( 'comment', '' )
         expect( state ).toHaveProperty( 'model')

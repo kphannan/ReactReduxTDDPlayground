@@ -18,7 +18,7 @@ type FlowAction = {
 export type MotivePowerState = {
     id: string,
     scac:  string,
-    number:  number,
+    number?:  number,
     unitType:  string,
     comment:  string,
     model: {
@@ -36,7 +36,7 @@ export type MotivePowerState = {
 var defaultState: MotivePowerState = {
     id: "",
     scac:  "",
-    number:  "222",
+    number:  "",
     unitType:  "",
     comment:  "",
     model: {
