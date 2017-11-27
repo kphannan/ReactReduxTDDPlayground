@@ -149,9 +149,9 @@ describe( 'Action creators', () => {
                         });
     });
 
-    it( 'Should create action: ', () => {
+    // it( 'Should create action: ', () => {
 
-    });
+    // });
 
 });
 

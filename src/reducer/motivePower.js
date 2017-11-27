@@ -132,7 +132,6 @@ const motivePower = (state: MotivePowerState = defaultState, action: FlowAction 
         case 'MOTIVE_POWER_DECODER_ADDRESS_CHANGE':
             return Object.assign( {}, state
                                  ,{decoder: action.payload });
-                                 // ,{decoder: {address: action.payload.dccAddress }});
 
         case 'MOTIVE_POWER_UNIT_TYPE_CHANGE':
             return Object.assign( {}, state
@@ -145,15 +144,12 @@ const motivePower = (state: MotivePowerState = defaultState, action: FlowAction 
         case 'MOTIVE_POWER_MANUFACTURER_CHANGE':
             return Object.assign( {}, state
                                  ,{model: action.payload });
-                                 // ,{model: {manufacturer: action.payload.manufacturer }});
 
         case 'MOTIVE_POWER_ROAD_NUMBER_CHANGE':
             return Object.assign( {}, state, action.payload );
-            // return Object.assign( {}, state, {number: action.payload.roadNumber, id:  action.payload.id});
 
         case 'MOTIVE_POWER_ROAD_NAME_CHANGE':
             return Object.assign({}, state, action.payload );
-            // return Object.assign({}, state, {scac: action.payload.roadName, id:  action.payload.id});
 
         default:        
             return state;

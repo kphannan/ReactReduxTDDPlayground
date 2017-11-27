@@ -6,9 +6,19 @@ import { Provider } from 'react-redux'
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import Enzyme from 'enzyme';
+// import { typeOfNode }  from 'enzyme';
+
+import {
+  childrenToSimplifiedArray,
+  nodeEqual,
+  nodeMatches,
+  typeOfNode,
+  displayNameOfNode,
+} from 'enzyme/build/Utils';
+
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
-// import { createForms } from 'react-redux-form';
+import { createForms, Control } from 'react-redux-form';
 
 // import MotivePower from '../motivePower';
 import ConnectedMotivePower, { MotivePower } from '../motivePower';
@@ -135,9 +145,12 @@ describe( 'The component should exist', () => {
         expect(wrapper).not.toBeNull();
     });
 
-    it( 'Should on include one (1) instance', () => {
+    it( 'Should include one (1) instance', () => {
         // console.log( wrapper );
-        expect( wrapper.find('input')).toHaveLength(7);
+        // console.log( wrapper.debug() );
+
+        expect( wrapper.find( Control.text)).toHaveLength(6);
+        expect( wrapper.find('input')).toHaveLength(1);
         expect( wrapper.find('button')).toHaveLength(1);
     });
 })
@@ -190,14 +203,17 @@ describe( 'Rendering of Component (MotivePower)', () => {
         })
 
         it( 'Should render a label (Road Name)', () => {
+
             expect( element.closest( 'label').text() ).toMatch( "Road Name" );
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (Road Name)', () => {
+
             expect( props ).toMatchObject( {placeholder: 'Road Name'});
         });
 
@@ -220,7 +236,7 @@ describe( 'Rendering of Component (MotivePower)', () => {
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (Road Number)', () => {
@@ -245,7 +261,7 @@ describe( 'Rendering of Component (MotivePower)', () => {
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (Unit Type)', () => {
@@ -270,7 +286,7 @@ describe( 'Rendering of Component (MotivePower)', () => {
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (Comment)', () => {
@@ -295,7 +311,7 @@ describe( 'Rendering of Component (MotivePower)', () => {
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (Manufacturer)', () => {
@@ -320,7 +336,7 @@ describe( 'Rendering of Component (MotivePower)', () => {
         });
 
         it( 'Should render a text input field', () => {
-            expect( props ).toMatchObject( {type: 'text' });
+            expect( element.type()).toBe( Control.text )
         });
 
         it( 'Should have placeholder text (DCC Address)', () => {
@@ -407,15 +423,21 @@ describe( 'Interaction', () => {
 
             element.simulate('change', { target: { value: "roadname" }})
             expect( spyMap.get( 'handleRoadNameChange' )).toHaveBeenCalledTimes(1);
+            // var actSpy = jest.spyOn( state, 'changeRoadNumber' )
+            // var reducerSpy = jest.spyOn( motivePower, 'changeRoadNumber' )
+            // spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
         });
 
 
         test( 'change dcc address', () => {
             // var element   = wrapper.find( '#dccaddress_id');
             // element.value = 'New value'
-            wrapper.find( '#dccaddress_id').simulate('change', { target: { value: "Mock: dccaddress" }})
+            var element = wrapper.find( '#dccaddress_id');
+            element.simulate('change', { target: { value: "Mock: dccaddress" }})
             // console.log( "foo: ", element.value )
             expect( spyMap.get( 'handleDecoderAddressChange' )).toHaveBeenCalledTimes(1);
+            // console.log( element.debug() )
+            // expect(element.props().value).toEqual("newEmail");
         });
 
         test( 'change model comment', () => {
