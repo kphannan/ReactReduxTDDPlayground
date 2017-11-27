@@ -124,7 +124,7 @@ export class MotivePower extends Component {
                     <input  type='text'   
                             id='manufacturer_id'
                             onChange={this.handleManufacturerChange.bind(this)}
-                            value={this.props.motivePower.manufacturer}
+                            value={this.props.motivePower.model.manufacturer}
                             placeholder='Manufacturer'
                     />
                 </label>
