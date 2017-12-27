@@ -1,0 +1,15 @@
+.text-input-container {
+     font-size: 16px;
+     color:#999;
+     margin-top: 0px;
+     margin-bottom: 0px;
+
+ }
+
+.text-input-container-error {
+    font-size: 16px;
+    color: #ed1c24 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}

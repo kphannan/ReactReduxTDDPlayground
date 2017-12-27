@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon Testing verify against icon snapshot 1`] = `
+<Icon
+  color="orange"
+  name="information_outlined"
+  styles={
+    Object {
+      "paddingRight": 10,
+    }
+  }
+>
+  <span
+    className="icon_information_outlined orange-text"
+    style={
+      Object {
+        "paddingRight": 10,
+      }
+    }
+  />
+</Icon>
+`;

@@ -9,11 +9,11 @@ const defaultState = {
     number:  "",
     unitType:  "",
     comment:  "",
-    model: {
+    kit: {
         manufacturer: "",
     },
     decoder: {
-        address:  "",
+        dccAddress:  "",
         family:  "",
         model:  "",
         comment:  "",
@@ -35,10 +35,10 @@ describe( 'MotivePower reducer defaults', () => {
         expect( state ).toHaveProperty( 'number')
         expect( state ).toHaveProperty( 'unitType')
         expect( state ).toHaveProperty( 'comment')
-        expect( state ).toHaveProperty( 'model')
-        expect( state ).toHaveProperty( 'model.manufacturer')
+        expect( state ).toHaveProperty( 'kit')
+        expect( state ).toHaveProperty( 'kit.manufacturer')
         expect( state ).toHaveProperty( 'decoder')
-        expect( state ).toHaveProperty( 'decoder.address')
+        expect( state ).toHaveProperty( 'decoder.dccAddress')
         expect( state ).toHaveProperty( 'decoder.family')
         expect( state ).toHaveProperty( 'decoder.model')
         expect( state ).toHaveProperty( 'decoder.comment')
@@ -171,10 +171,10 @@ describe( 'Reducer', () => {
         expect( state ).toHaveProperty( 'number', "" )
         expect( state ).toHaveProperty( 'unitType', '' )
         expect( state ).toHaveProperty( 'comment', '' )
-        expect( state ).toHaveProperty( 'model')
-        expect( state ).toHaveProperty( 'model.manufacturer', '' )
+        expect( state ).toHaveProperty( 'kit')
+        expect( state ).toHaveProperty( 'kit.manufacturer', '' )
         expect( state ).toHaveProperty( 'decoder' )
-        expect( state ).toHaveProperty( 'decoder.address', '' )
+        expect( state ).toHaveProperty( 'decoder.dccAddress', '' )
         expect( state ).toHaveProperty( 'decoder.family', '' )
         expect( state ).toHaveProperty( 'decoder.model', '' )
         expect( state ).toHaveProperty( 'decoder.comment', '' )

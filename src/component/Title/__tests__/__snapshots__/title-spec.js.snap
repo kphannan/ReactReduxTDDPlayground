@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Application Page Testing Add Application Page Renders 1`] = `
+<Title
+  styles={
+    Object {
+      "paddingRight": 10,
+    }
+  }
+  tag="h1"
+>
+  <div>
+    <h1
+      style={
+        Object {
+          "paddingRight": 10,
+        }
+      }
+    />
+  </div>
+</Title>
+`;

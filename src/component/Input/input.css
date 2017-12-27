@@ -1,0 +1,5 @@
+.text-input-container input[type=text]{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: block;
+ }

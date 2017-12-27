@@ -1,0 +1,12 @@
+.container-fluid {
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.row-height {
+    margin-top: 30px;
+}
+
+.error-label {
+    color: #ed1c24!important;
+}

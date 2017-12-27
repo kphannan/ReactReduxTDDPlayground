@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorText Component Testing verify against ErrorText snapshot 1`] = `
+<div
+  className="text-input-container error"
+>
+  <p
+    className="error-msg"
+  />
+</div>
+`;
