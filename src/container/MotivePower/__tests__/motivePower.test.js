@@ -94,395 +94,401 @@ const createTestProps = () => ({
 Enzyme.configure({ adapter: new Adapter() });
 
 
-describe( 'The component should exist', () => {
-    var wrapper;
+describe('Motive Power page', () => {
 
-    beforeEach( () => {
-        // wrapper = shallow(<MotivePower />)
-        wrapper = shallow(<MotivePower {...createTestProps()} />)
-        //
-    });
-
-    it( 'Should not be null', () => {
-
-        expect(wrapper).not.toBeNull();
-    });
-
-    it( 'Should include one (1) instance', () => {
-
-        expect( wrapper.find( Control.text)).toHaveLength(5);
-        expect( wrapper.find('input')).toHaveLength(1);
-        expect( wrapper.find('button')).toHaveLength(1);
-    });
-})
-
-
-describe( 'Rendering of Component (MotivePower)', () => {
-
-    var wrapper;
-    var element;
-    var props;
-
-    beforeEach( () => {
-        // wrapper = shallow(<MotivePower />)
-        wrapper = shallow(<MotivePower {...createTestProps()} />)
-        //
-    });
-
-    describe( 'Model ID (key)', () => {
+    describe( 'The component should exist', () => {
+        var wrapper;
 
         beforeEach( () => {
-            element = wrapper.find( '#unit_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render ID label (Unit ID)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "Unit ID" );
+            // wrapper = shallow(<MotivePower />)
+            wrapper = shallow(<MotivePower {...createTestProps()} />)
+            //
         });
 
-        it( 'Should render a text input field', () => {
+        it( 'Should not be null', () => {
 
-            expect( props ).toMatchObject( {type: 'text' });
+            expect(wrapper).not.toBeNull();
         });
 
-        it( 'Should have placeholder text ()', () => {
+        it( 'Should include one (1) instance', () => {
 
-            expect( props ).toMatchObject( {placeholder: 'Unit ID'});
-        });
-    });
-
-    // --- Road Name ---exc
-    describe( 'Road Name', () => {
-
-        beforeEach( () => {
-            element = wrapper.find( '#roadname_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render a label (Road Name)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "Road Name" );
-        });
-
-        it( 'Should render a text input field', () => {
-
-            expect( element.type()).toBe( Control.text )
-        });
-
-        it( 'Should have placeholder text (Road Name)', () => {
-
-            expect( props ).toMatchObject( {placeholder: 'Road Name'});
-        });
-
-    });
-
-    // --- Road Number ---
-    describe( 'Road Number', () => {
-
-        beforeEach( () => {
-            element = wrapper.find( '#roadnumber_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render a label (Road Name)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "Road Number" );
-        });
-
-        it( 'Should render a text input field', () => {
-
-            expect( element.type()).toBe( Control.text )
-        });
-
-        it( 'Should have placeholder text (Road Number)', () => {
-
-            expect( props ).toMatchObject( {placeholder: 'Road Number'});
-        });
-    });
-
-    // --- Unit Type ---
-    describe( 'Unit Type', () => {
-
-        beforeEach( () => {
-            element = wrapper.find( '#unittype_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render a label (Unit Type)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "Unit Type" );
-        });
-
-        it( 'Should render a text input field', () => {
-
-            expect( element.type()).toBe( Control.text )
-        });
-
-        it( 'Should have placeholder text (Unit Type)', () => {
-
-            expect( props ).toMatchObject( {placeholder: 'Unit Type'});
-        });
-    });
-
-    // --- Comment ---
-    describe( 'Model Comment', () => {
-
-        beforeEach( () => {
-            element = wrapper.find( '#comment_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render a label (Comment)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "Comment" );
-        });
-
-        it( 'Should render a text input field', () => {
-
-            expect( element.type()).toBe( Control.text )
-        });
-
-        it( 'Should have placeholder text (Comment)', () => {
-
-            expect( props ).toMatchObject( {placeholder: 'Comment'});
-        });
-    });
-
-    // --- Model Manufacturer ---
-    // describe( 'Model Manufacturer', () => {
-    //     var element;
-    //     var props;
-
-    //     beforeEach( () => {
-    //         element = wrapper.find( '#manufacturer_id');
-    //         expect( element ).not.toBeNull();
-
-    //         props = element.props();
-    //     })
-
-    //     it( 'Should render a label (Manufacturer)', () => {
-    //         expect( element.closest( 'label').text() ).toMatch( "Manufacturer" );
-    //     });
-
-    //     it( 'Should render a text input field', () => {
-    //         expect( element.type()).toBe( Control.text )
-    //     });
-
-    //     it( 'Should have placeholder text (Manufacturer)', () => {
-    //         expect( props ).toMatchObject( {placeholder: 'Manufacturer'});
-    //     });
-    // });
-
-    // --- DCC Address ---
-    describe( 'DCC Address', () => {
-
-        beforeEach( () => {
-            element = wrapper.find( '#dccaddress_id');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-        })
-
-        it( 'Should render a label (DCC Address)', () => {
-
-            expect( element.closest( 'label').text() ).toMatch( "DCC Address" );
-        });
-
-        it( 'Should render a text input field', () => {
-
-            expect( element.type()).toBe( Control.text )
-        });
-
-        it( 'Should have placeholder text (DCC Address)', () => {
-
-            expect( props ).toMatchObject( {placeholder: 'DCC Address'});
+            expect( wrapper.find( Control.text)).toHaveLength(5);
+            expect( wrapper.find('input')).toHaveLength(1);
+            expect( wrapper.find('button')).toHaveLength(1);
         });
     })
 
-    // --- Reset to Default ---
-    describe( 'Reset to Default button', () => {
+
+    describe( 'Rendering of Component (MotivePower)', () => {
+
+        var wrapper;
+        var element;
+        var props;
 
         beforeEach( () => {
-            element = wrapper.find( '#reset');
-            expect( element ).not.toBeNull();
-
-            props = element.props();
-            // console.log( props )
-        })
-
-        it( 'Should render a  button', () => {
-            // expect( props ).toMatchObject( {type: 'submit' });
-            expect( props ).toMatchObject( {type: 'button' });
+            // wrapper = shallow(<MotivePower />)
+            wrapper = shallow(<MotivePower {...createTestProps()} />)
+            //
         });
 
-        it( 'Should have the label (Reset to Default)', () => {
-            expect( props ).toMatchObject( {children: 'Reset to Default'});
+        describe( 'Model ID (key)', () => {
+
+            beforeEach( () => {
+                element = wrapper.find( '#unit_id');
+                expect( element ).not.toBeNull();
+
+                props = element.props();
+            })
+
+            it( 'Should render ID label (Unit ID)', () => {
+
+                expect( element.closest( 'label').text() ).toMatch( "Unit ID" );
+            });
+
+            it( 'Should render a text input field', () => {
+
+                expect( props ).toMatchObject( {type: 'text' });
+            });
+
+            it( 'Should have placeholder text ()', () => {
+
+                expect( props ).toMatchObject( {placeholder: 'Unit ID'});
+            });
         });
 
-    })
-});
+        // --- Road Name ---exc
+        describe( 'Road Name', () => {
 
+            beforeEach( () => {
+                element = wrapper.find( '#roadname_id');
+                expect( element ).not.toBeNull();
 
-describe( 'Interaction', () => {
+                props = element.props();
+            })
 
-    var   wrapper;
-    var   props;
-    var   spyMap;
+            it( 'Should render a label (Road Name)', () => {
 
+                expect( element.closest( 'label').text() ).toMatch( "Road Name" );
+            });
 
-    beforeAll( () => {
+            it( 'Should render a text input field', () => {
 
-        const fnArray = [
-            ['handleButtonClick',''],
-            ['handleRoadNameChange',''],
-            ['handleRoadNumberChange',''],
-            ['handleUnitIdChange',''],
-            ['handleCommentChange',''],
-            ['handleUnitTypeChange',''],
-            ['handleManufacturerChange',''],
-            ['handleDecoderAddressChange',''],
-        ];
+                expect( element.type()).toBe( Control.text )
+            });
 
-        spyMap = new Map( fnArray );
+            it( 'Should have placeholder text (Road Name)', () => {
 
-        for (var key of spyMap.keys()) {
-            // console.log(key);
-            spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
-        }
-    });
+                expect( props ).toMatchObject( {placeholder: 'Road Name'});
+            });
 
-    beforeEach( () => {
-        // need to place this onClick on the button inside the component
-        // wrapper = shallow(<MotivePower {...props} handleClick={jest.fn()}/>)
-        wrapper = shallow(<MotivePower {...createTestProps()} />)
-        //
-    });
-
-    describe( 'onChange functions are properly mapped', () => {
-
-        test( 'change road number`', () => {
-
-            var element;
-            element = wrapper.find( '#roadnumber_id');
-            expect( element ).not.toBeNull();
-
-            element.simulate('change', { target: { value: "roadnumber" }})
-            expect( spyMap.get( 'handleRoadNumberChange' )).toHaveBeenCalledTimes(1);
         });
 
-        test( 'change road name`', () => {
+        // --- Road Number ---
+        describe( 'Road Number', () => {
 
-            var element = wrapper.find( '#roadname_id');
-            expect( element ).not.toBeNull();
+            beforeEach( () => {
+                element = wrapper.find( '#roadnumber_id');
+                expect( element ).not.toBeNull();
 
-            element.simulate('change', { target: { value: "roadname" }})
-            expect( spyMap.get( 'handleRoadNameChange' )).toHaveBeenCalledTimes(1);
-            // var actSpy = jest.spyOn( state, 'changeRoadNumber' )
-            // var reducerSpy = jest.spyOn( motivePower, 'changeRoadNumber' )
-            // spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
+                props = element.props();
+            })
+
+            it( 'Should render a label (Road Name)', () => {
+
+                expect( element.closest( 'label').text() ).toMatch( "Road Number" );
+            });
+
+            it( 'Should render a text input field', () => {
+
+                expect( element.type()).toBe( Control.text )
+            });
+
+            it( 'Should have placeholder text (Road Number)', () => {
+
+                expect( props ).toMatchObject( {placeholder: 'Road Number'});
+            });
         });
 
+        // --- Unit Type ---
+        describe( 'Unit Type', () => {
 
-        test( 'change dcc address', () => {
-            // var element   = wrapper.find( '#dccaddress_id');
-            // element.value = 'New value'
-            var element = wrapper.find( '#dccaddress_id');
-            // console.log( element.debug() )
-            // console.log( element.props() )
+            beforeEach( () => {
+                element = wrapper.find( '#unittype_id');
+                expect( element ).not.toBeNull();
 
-            wrapper.setProps({motivePower: {decoder: {address: 123}}});
-            element.simulate('change', { target: { value: "Mock: dccaddress" }})
-            // console.log( "foo: ", element.value )
-            expect( spyMap.get( 'handleDecoderAddressChange' )).toHaveBeenCalledTimes(1);
-            // expect(element.props().value).toEqual("newEmail");
+                props = element.props();
+            })
+
+            it( 'Should render a label (Unit Type)', () => {
+
+                expect( element.closest( 'label').text() ).toMatch( "Unit Type" );
+            });
+
+            it( 'Should render a text input field', () => {
+
+                expect( element.type()).toBe( Control.text )
+            });
+
+            it( 'Should have placeholder text (Unit Type)', () => {
+
+                expect( props ).toMatchObject( {placeholder: 'Unit Type'});
+            });
         });
 
-        test( 'change model comment', () => {
+        // --- Comment ---
+        describe( 'Model Comment', () => {
 
-            wrapper.find( '#comment_id').simulate('change', { target: { value: "comment" }})
-            expect( spyMap.get( 'handleCommentChange' )).toHaveBeenCalledTimes(1);
+            beforeEach( () => {
+                element = wrapper.find( '#comment_id');
+                expect( element ).not.toBeNull();
+
+                props = element.props();
+            })
+
+            it( 'Should render a label (Comment)', () => {
+
+                expect( element.closest( 'label').text() ).toMatch( "Comment" );
+            });
+
+            it( 'Should render a text input field', () => {
+
+                expect( element.type()).toBe( Control.text )
+            });
+
+            it( 'Should have placeholder text (Comment)', () => {
+
+                expect( props ).toMatchObject( {placeholder: 'Comment'});
+            });
         });
 
-        test( 'change unit type', () => {
+        // --- Model Manufacturer ---
+        // describe( 'Model Manufacturer', () => {
+        //     var element;
+        //     var props;
 
-            wrapper.find( '#unittype_id').simulate('change', { target: { value: "unit type" }})
-            expect( spyMap.get( 'handleUnitTypeChange' )).toHaveBeenCalledTimes(1);
-        });
+        //     beforeEach( () => {
+        //         element = wrapper.find( '#manufacturer_id');
+        //         expect( element ).not.toBeNull();
 
-        test( 'change unit id', () => {
+        //         props = element.props();
+        //     })
 
-            wrapper.find( '#unit_id').simulate('change', { target: { value: "unit id" }})
-            expect( spyMap.get( 'handleUnitIdChange' )).toHaveBeenCalledTimes(1);
-        });
+        //     it( 'Should render a label (Manufacturer)', () => {
+        //         expect( element.closest( 'label').text() ).toMatch( "Manufacturer" );
+        //     });
 
-        // test( 'change manufacturer', () => {
+        //     it( 'Should render a text input field', () => {
+        //         expect( element.type()).toBe( Control.text )
+        //     });
 
-        //     wrapper.find( '#manufacturer_id').simulate('change', { target: { value: "model manufacturer" }})
-        //     expect( spyMap.get( 'handleManufacturerChange' )).toHaveBeenCalledTimes(1);
+        //     it( 'Should have placeholder text (Manufacturer)', () => {
+        //         expect( props ).toMatchObject( {placeholder: 'Manufacturer'});
+        //     });
         // });
 
-        afterAll( () => {
+        // --- DCC Address ---
+        describe( 'DCC Address', () => {
+
+            beforeEach( () => {
+                element = wrapper.find( '#dccaddress_id');
+                expect( element ).not.toBeNull();
+
+                props = element.props();
+            })
+
+            it( 'Should render a label (DCC Address)', () => {
+
+                expect( element.closest( 'label').text() ).toMatch( "DCC Address" );
+            });
+
+            it( 'Should render a text input field', () => {
+
+                expect( element.type()).toBe( Control.text )
+            });
+
+            it( 'Should have placeholder text (DCC Address)', () => {
+
+                expect( props ).toMatchObject( {placeholder: 'DCC Address'});
+            });
+        })
+
+        // --- Reset to Default ---
+        describe( 'Reset to Default button', () => {
+
+            beforeEach( () => {
+                element = wrapper.find( '#reset');
+                expect( element ).not.toBeNull();
+
+                props = element.props();
+                // console.log( props )
+            })
+
+            it( 'Should render a  button', () => {
+                // expect( props ).toMatchObject( {type: 'submit' });
+                expect( props ).toMatchObject( {type: 'button' });
+            });
+
+            it( 'Should have the label (Reset to Default)', () => {
+                expect( props ).toMatchObject( {children: 'Reset to Default'});
+            });
+
+        })
+    });
+
+
+    describe( 'Interaction', () => {
+
+        var   wrapper;
+        var   props;
+        var   spyMap;
+
+
+        beforeAll( () => {
+
+            const fnArray = [
+                ['handleButtonClick',''],
+                ['handleRoadNameChange',''],
+                ['handleRoadNumberChange',''],
+                ['handleUnitIdChange',''],
+                ['handleCommentChange',''],
+                ['handleUnitTypeChange',''],
+                ['handleManufacturerChange',''],
+                ['handleDecoderAddressChange',''],
+            ];
+
+            spyMap = new Map( fnArray );
+
             for (var key of spyMap.keys()) {
-                // expect( spyMap.get( key )).toHaveBeenCalledTimes(1);
-                // console.log( key )
-                expect( spyMap.get( key )).toHaveBeenCalled();
-            }        
+                // console.log(key);
+                spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
+            }
         });
-    })
-
-
-    describe( 'Reset to Default', () => {
 
         beforeEach( () => {
-
-            var x = wrapper.find( '#reset').props();
-        })
-
-        it( 'Should reset form fields to blanks', () => {
-            wrapper.find( '#reset').simulate( 'click' );
-            // expect( spy ).toHaveBeenClicked;
-            expect( spyMap.get( 'handleButtonClick' )).toHaveBeenCalledTimes(1);
+            // need to place this onClick on the button inside the component
+            // wrapper = shallow(<MotivePower {...props} handleClick={jest.fn()}/>)
+            wrapper = shallow(<MotivePower {...createTestProps()} />)
+            //
         });
-    });
-    
-    describe( 'Changing Road name or number also changes unit id', () => {
 
-        describe( 'Changes to Road Name', () => {
+        describe( 'onChange functions are properly mapped', () => {
 
-            it( 'Changes to road name', () => {
+            test( 'change road number`', () => {
+
+                var element;
+                element = wrapper.find( '#roadnumber_id');
+                expect( element ).not.toBeNull();
+
+                element.simulate('change', { target: { value: "roadnumber" }})
+                expect( spyMap.get( 'handleRoadNumberChange' )).toHaveBeenCalledTimes(1);
+            });
+
+            test( 'change road name`', () => {
+
                 var element = wrapper.find( '#roadname_id');
-                element.simulate('change', { target: { value: "Mock: road name" }});
-                // expect( true ).toBe(false)
+                expect( element ).not.toBeNull();
+
+                element.simulate('change', { target: { value: "roadname" }})
+                expect( spyMap.get( 'handleRoadNameChange' )).toHaveBeenCalledTimes(1);
+                // var actSpy = jest.spyOn( state, 'changeRoadNumber' )
+                // var reducerSpy = jest.spyOn( motivePower, 'changeRoadNumber' )
+                // spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
             });
 
-            it( 'Unit id updates with changes to road name', () => {
-                // expect( true ).toBe(false)
+
+            test( 'change dcc address', () => {
+                // var element   = wrapper.find( '#dccaddress_id');
+                // element.value = 'New value'
+                var element = wrapper.find( '#dccaddress_id');
+                // console.log( element.debug() )
+                // console.log( element.props() )
+
+                wrapper.setProps({motivePower: {decoder: {address: 123}}});
+                element.simulate('change', { target: { value: "Mock: dccaddress" }})
+                // console.log( "foo: ", element.value )
+                expect( spyMap.get( 'handleDecoderAddressChange' )).toHaveBeenCalledTimes(1);
+                // expect(element.props().value).toEqual("newEmail");
+            });
+
+            test( 'change model comment', () => {
+
+                wrapper.find( '#comment_id').simulate('change', { target: { value: "comment" }})
+                expect( spyMap.get( 'handleCommentChange' )).toHaveBeenCalledTimes(1);
+            });
+
+            test( 'change unit type', () => {
+
+                wrapper.find( '#unittype_id').simulate('change', { target: { value: "unit type" }})
+                expect( spyMap.get( 'handleUnitTypeChange' )).toHaveBeenCalledTimes(1);
+            });
+
+            test( 'change unit id', () => {
+
+                wrapper.find( '#unit_id').simulate('change', { target: { value: "unit id" }})
+                expect( spyMap.get( 'handleUnitIdChange' )).toHaveBeenCalledTimes(1);
+            });
+
+            // test( 'change manufacturer', () => {
+
+            //     wrapper.find( '#manufacturer_id').simulate('change', { target: { value: "model manufacturer" }})
+            //     expect( spyMap.get( 'handleManufacturerChange' )).toHaveBeenCalledTimes(1);
+            // });
+
+            afterAll( () => {
+                for (var key of spyMap.keys()) {
+                    // expect( spyMap.get( key )).toHaveBeenCalledTimes(1);
+                    // console.log( key )
+                    expect( spyMap.get( key )).toHaveBeenCalled();
+                }        
             });
         })
 
-        describe( 'Changes to Road Number', () => {
 
-            it( 'Changes to road name', () => {
-                // expect( true ).toBe(false)
-                wrapper.find( '#roadnumber_id').simulate('change', { target: { value: "Mock: road number" }})
-            });
+        describe( 'Reset to Default', () => {
 
-            it( 'Unit id updates with changes to road name', () => {
-                // expect( true ).toBe(false)
+            beforeEach( () => {
+
+                var x = wrapper.find( '#reset').props();
+            })
+
+            it( 'Should reset form fields to blanks', () => {
+                wrapper.find( '#reset').simulate( 'click' );
+                // expect( spy ).toHaveBeenClicked;
+                expect( spyMap.get( 'handleButtonClick' )).toHaveBeenCalledTimes(1);
             });
-        })
+        });
+        
+        describe( 'Changing Road name or number also changes unit id', () => {
+
+            describe( 'Changes to Road Name', () => {
+
+                it( 'Changes to road name', () => {
+                    var element = wrapper.find( '#roadname_id');
+                    element.simulate('change', { target: { value: "Mock: road name" }});
+                    // expect( true ).toBe(false)
+                });
+
+                it( 'Unit id updates with changes to road name', () => {
+                    // expect( true ).toBe(false)
+                });
+            })
+
+            describe( 'Changes to Road Number', () => {
+
+                it( 'Changes to road name', () => {
+                    // expect( true ).toBe(false)
+                    wrapper.find( '#roadnumber_id').simulate('change', { target: { value: "Mock: road number" }})
+                });
+
+                it( 'Unit id updates with changes to road name', () => {
+                    // expect( true ).toBe(false)
+                });
+            })
+        });
+
     });
+
+    test('do test 1');
+    test('do test 2');
 
 });
-
