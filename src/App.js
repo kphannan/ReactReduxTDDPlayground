@@ -14,9 +14,9 @@ class App extends Component {
     return (
         <div id="app">
           <Header />
-		  <Router>
-    	      <Main />
-          </Router>
+	    <Router>
+  	      <Main />
+	    </Router>
         </div>
     );
   }

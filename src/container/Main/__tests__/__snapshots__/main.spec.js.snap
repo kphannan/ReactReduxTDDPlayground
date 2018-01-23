@@ -4,9 +4,29 @@ exports[`Main Renders Main Entry Page renders with header 1`] = `
 <div
   className="main"
 >
-  <Route
-    component={[Function]}
-    path="/roster"
-  />
+  <h3>
+    foo
+  </h3>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/roster"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/roster/:id"
+    />
+    <Route
+      component={[Function]}
+      path="/roster/new"
+    />
+  </Switch>
 </div>
 `;

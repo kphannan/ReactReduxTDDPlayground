@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
+import React from 'react'
 // import type { Types } from 'react'
 
 import type { Reducer } from 'redux'

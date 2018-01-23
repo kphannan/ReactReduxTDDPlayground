@@ -12,8 +12,11 @@ import {
 
 import './main.css'
 
-// import ConnectedRoster, {Roster} from '../Roster/roster'
-import ConnectedRoster from '../Roster/roster'
+import Homepage from '../Homepage/Homepage'
+import ConnectedRoster, {Roster} from '../Roster/roster'
+// import ConnectedRoster from '../Roster/roster'
+import RosterList from '../Roster/RosterList'
+import AddRosterEntry from '../Roster/AddRosterEntry'
 
 			// <Route path='/applications/new' component={ AddApplicationPage }/>
 					// <Route path='/roster' render={ props => <MotivePower foo="here" {...props}/> } />
@@ -24,12 +27,20 @@ export default class Main extends Component {
 
 		return (
 			<div className='main'>
-					<Route path='/roster' component={ConnectedRoster} />
+			  <h3>foo</h3>
+			    <Switch>
+				<Route exact path="/"           component={Homepage} />
+				<Route exact path="/roster"     component={RosterList} />
+				<Route exact path="/roster/:id" component={Roster} />
+				<Route       path="/roster/new" component={AddRosterEntry} />
+			    </Switch>
 			</div>
 		);
 	};
 }
 
+
+					// <Route       path='/roster/:id' component={ConnectedRoster} />
 
 			// <div className='main'>
 			// 	<Router>

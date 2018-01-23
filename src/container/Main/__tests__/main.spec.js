@@ -61,7 +61,7 @@ describe('Routing', () => {
   test('renders MotivePower at /roster', () => {
     const store = configureStore();
     const wrapper = mount(<Provider store={store}>
-                            <MemoryRouter initialEntries={['/roster', '/']} initialIndex={0}>
+                            <MemoryRouter initialEntries={['/roster/4', '/']} initialIndex={0}>
                               <Main/>
                             </MemoryRouter>
                           </Provider>)
