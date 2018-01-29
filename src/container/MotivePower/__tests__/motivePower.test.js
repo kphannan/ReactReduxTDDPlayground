@@ -4,7 +4,7 @@ import React from 'react';
 import { Provider } from 'react-redux'
 
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 import Enzyme from 'enzyme';
 // import { typeOfNode }  from 'enzyme';
 
@@ -360,7 +360,7 @@ describe('Motive Power page', () => {
 
             for (var key of spyMap.keys()) {
                 // console.log(key);
-                spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
+                // spyMap.set( key, jest.spyOn( MotivePower.prototype, key ))
             }
         });
 

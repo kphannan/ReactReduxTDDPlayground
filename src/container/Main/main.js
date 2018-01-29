@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // import { Route } from 'react-router-dom'
 // import { BrowserRouter as Router } from 'react-router-dom'
 import {
-  MemoryRouter as Router,
+  // MemoryRouter as Router,
   Route,
   Switch,
   // Link
@@ -27,13 +27,12 @@ export default class Main extends Component {
 
 		return (
 			<div className='main'>
-			  <h3>foo</h3>
-			    <Switch>
-				<Route exact path="/"           component={Homepage} />
-				<Route exact path="/roster"     component={RosterList} />
-				<Route exact path="/roster/:id" component={Roster} />
-				<Route       path="/roster/new" component={AddRosterEntry} />
-			    </Switch>
+				    <Switch>
+						<Route  exact path="/roster/new" component={AddRosterEntry} />
+						<Route  exact path="/roster/:id" component={ConnectedRoster} />
+						<Route  exact path="/roster"     component={RosterList} />
+						<Route  exact path="/"           component={Homepage} />
+				    </Switch>
 			</div>
 		);
 	};

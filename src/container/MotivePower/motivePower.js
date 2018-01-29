@@ -4,7 +4,7 @@
 import React from 'react'
 // import type { Types } from 'react'
 
-import type { Reducer } from 'redux'
+// import type { Reducer } from 'redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -13,6 +13,8 @@ import { Form, Control, Errors } from 'react-redux-form'
 import Card from '../../component/Card/card';
 import Title from '../../component/Title/title';
 import { Grid, Row, Col } from 'react-flexbox-grid'
+
+import {Link} from 'react-router-dom'
 
 
 import { motivePowerActions } from '../../reducer/motivePower'
@@ -112,7 +114,7 @@ export class MotivePower extends React.Component<Props> {
     isValid( element: any ) {
 
         // return !(element.pristine || element.valid);
-        return false;
+        return true;
     }
 
 
@@ -139,7 +141,7 @@ export class MotivePower extends React.Component<Props> {
                     />
                 </label>
                 <Form model="motivePower" autoComplete="off">
-                    <Card>
+                    <Card>  {/*Roster Entry*/}
                         <Title tag='h3'>Roster Entry</Title>
                         <Grid fluid>
                             <div className={this.isValid(this.props.motivePower.scac) ? 'text-input-container error' : 'text-input-container'}>
@@ -189,6 +191,52 @@ export class MotivePower extends React.Component<Props> {
                                 </Col>
                             </Row>
 
+                            <Row className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
+                                <Col sm={4} md={4} lg={4}>
+                                    <label>Comment
+                                        <Control.text
+                                                id='comment_id'
+                                                onChange={this.handleCommentChange.bind(this)}
+                                                model=".comment"
+                                                placeholder='Comment'/>
+                                    </label>
+                                </Col>
+                                <Col sm={5} md={5} lg={5}>
+                                    <span>Testing [{this.props.motivePower.comment}] and some more:&nbsp;
+                                    {this.isValid(this.props.motivePower.comment) ? 'valid' : 'error'}</span>
+                                </Col>
+                            </Row>
+
+
+                        </Grid>
+                        <div>
+                            <Errors
+                                model=".scac"
+                                show={{pristine: false}}
+                                component={(props) => <p className="error-msg">{props.children}</p>}
+                                messages={{
+                                    validLdap: 'LDAP is invalid',
+                                    required: 'Locomotive road name is required',
+                                    maxLength: 'Road name must be less than 7 characters'
+                                }}
+                            />
+
+                            <Errors
+                                model=".number"
+                                show={{pristine: false}}
+                                component={(props) => <p className="error-msg">{props.children}</p>}
+                                messages={{
+                                    validLdap: 'LDAP is invalid',
+                                    required: 'Locomotive number is required'
+                                }}
+                            />
+                        </div>
+                    </Card>
+
+                    <Card> {/*DCC Decoder*/}
+                        <Title tag='h3'>DCC Decoder</Title>
+                        <Grid fluid>
+
                             <Row className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
                                 <Col sm={4} md={4} lg={4}>
                                     <label>DCC Address
@@ -209,22 +257,17 @@ export class MotivePower extends React.Component<Props> {
                                 </Col>
                             </Row>
 
-                            <Row className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
-                                <Col sm={4} md={4} lg={4}>
-                                    <label>Comment
-                                        <Control.text
-                                                id='comment_id'
-                                                onChange={this.handleCommentChange.bind(this)}
-                                                model=".comment"
-                                                placeholder='Comment'/>
-                                    </label>
-                                </Col>
-                                <Col sm={5} md={5} lg={5}>
-                                    <span>Testing [{this.props.motivePower.comment}] and some more:&nbsp;
-                                    {this.isValid(this.props.motivePower.comment) ? 'valid' : 'error'}</span>
-                                </Col>
-                            </Row>
 
+
+                        </Grid>
+                        <div>
+                        </div>
+                    </Card>
+
+
+                    <Card>  {/*Prototype Information*/}
+                        <Title tag='h3'>Prototype Information</Title>
+                        <Grid fluid>
 
                             <Row className={this.isValid(this.props.motivePower.unitType) ? 'valid' : 'error-label'}>
                                 <Col sm={4} md={4} lg={4}>
@@ -243,34 +286,46 @@ export class MotivePower extends React.Component<Props> {
                                 </Col>
                             </Row>
                         </Grid>
+
+                        <div>
+                        </div>
                     </Card>
 
-                    <div>
-                        <Errors
-                            model=".scac"
-                            show={{pristine: false}}
-                            component={(props) => <p className="error-msg">{props.children}</p>}
-                            messages={{
-                                validLdap: 'LDAP is invalid',
-                                required: 'Locomotive road name is required',
-                                maxLength: 'Road name must be less than 7 characters'
-                            }}
-                        />
 
-                        <Errors
-                            model=".number"
-                            show={{pristine: false}}
-                            component={(props) => <p className="error-msg">{props.children}</p>}
-                            messages={{
-                                validLdap: 'LDAP is invalid',
-                                required: 'Locomotive number is required'
-                            }}
-                        />
-                        <button type='button'
-                                onClick={this.handleButtonClick.bind(this)}
-                                id='reset'>
-                            Reset to Default
-                        </button>
+                    <Card> {/*Model Information*/}
+                        <Title tag='h3'>Model Information</Title>
+                        <Grid fluid>
+
+                            <Row className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                <Col sm={4} md={4} lg={4}>
+                                    <label>DCC Address
+                                        <Control.text
+                                                id='dccaddress_id'
+                                                onChange={this.handleDecoderAddressChange.bind(this)}
+                                                model=".decoder.address"
+                                                placeholder='DCC Address'
+                                                validators={{
+                                                    required: (val) => val
+                                                }}
+                                        />
+                                    </label>
+                                </Col>
+                                <Col sm={5} md={5} lg={5}>
+                                    <span>Testing [{this.props.motivePower.decoder.dccAddress}] and some more:&nbsp;
+                                    {this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error'}</span>
+                                </Col>
+                            </Row>
+
+
+
+                        </Grid>
+                        <div>
+                        </div>
+                    </Card>
+
+
+                    <div style={{justifyContent:'flex-end',display:'flex'}}>
+                        <Link className='button primary' onClick={this.handleButtonClick.bind(this)} id='reset' to='#'>Reset to Default</Link>
                     </div>
 
                 </Form>

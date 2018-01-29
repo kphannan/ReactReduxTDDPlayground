@@ -1,0 +1,12 @@
+.page-title {
+	margin: 40px 0;
+}
+
+.page-title + * {
+	margin-top: 0;
+}
+
+.page-title + .breadcrumb-nav {
+	margin-top: -20px;
+}
+

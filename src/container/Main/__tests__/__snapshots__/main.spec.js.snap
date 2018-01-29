@@ -1,17 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main Renders Main Entry Page renders with header 1`] = `
+exports[`Main component Main Renders Main Entry Page renders with header 1`] = `
 <div
   className="main"
 >
-  <h3>
-    foo
-  </h3>
   <Switch>
     <Route
       component={[Function]}
       exact={true}
-      path="/"
+      path="/roster/new"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/roster/:id"
     />
     <Route
       component={[Function]}
@@ -21,11 +23,7 @@ exports[`Main Renders Main Entry Page renders with header 1`] = `
     <Route
       component={[Function]}
       exact={true}
-      path="/roster/:id"
-    />
-    <Route
-      component={[Function]}
-      path="/roster/new"
+      path="/"
     />
   </Switch>
 </div>

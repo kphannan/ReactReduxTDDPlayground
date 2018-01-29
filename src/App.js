@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MemoryRouter as Router } from 'react-router-dom'
+// import { MemoryRouter as Router } from 'react-router-dom'
 import './App.css';
 
 import Header from './component/Header/header';
@@ -14,9 +14,7 @@ class App extends Component {
     return (
         <div id="app">
           <Header />
-	    <Router>
   	      <Main />
-	    </Router>
         </div>
     );
   }
