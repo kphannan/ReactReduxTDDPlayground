@@ -7,14 +7,15 @@ import React from 'react'
 // import type { Reducer } from 'redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 import { Form, Control, Errors } from 'react-redux-form'
 import Card from '../../component/Card/card';
 import Title from '../../component/Title/title';
+import DescriptiveText from '../../component/DescriptiveText/descriptivetext';
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
-import {Link} from 'react-router-dom'
 
 
 import { motivePowerActions } from '../../reducer/motivePower'
@@ -43,7 +44,8 @@ type Props = {
 
 export class MotivePower extends React.Component<Props> {
 
-        handleClick               : Function
+        handlehandleFormReset     : Function
+        handlehandleFormSave      : Function
         handleDecoderAddressChange: Function
         handleUnitIdChange        : Function
         handleRoadNameChange      : Function
@@ -56,7 +58,8 @@ export class MotivePower extends React.Component<Props> {
         super( ...args )
 
         // console.log( this )
-        this.handleClick                = this.handleButtonClick.bind(this)
+        this.handlehandleFormReset      = this.handleFormReset.bind(this)
+        this.handlehandleFormSave       = this.handleFormSave.bind(this)
         // this.handleDecoderAddressChange = this.handleDecoderAddressChange.bind(this)
         this.handleUnitIdChange         = this.handleUnitIdChange.bind(this)
         this.handleRoadNameChange       = this.handleRoadNameChange.bind(this)
@@ -67,9 +70,15 @@ export class MotivePower extends React.Component<Props> {
         // this.handleChange = this.handleChange.bind(this) 
     }
 
-    handleButtonClick( event: ReactOnClickEvent ) {
+    handleFormReset( event: ReactOnClickEvent ) {
 
         this.props.actions.resetToDefaults();
+    }
+
+    handleFormSave( event: ReactOnClickEvent ) {
+
+        console.log( 'handleFormSave called')
+        // this.props.actions.resetToDefaults();
     }
 
     handleDecoderAddressChange( event: ReactOnChangeEvent ) {
@@ -140,39 +149,47 @@ export class MotivePower extends React.Component<Props> {
                             placeholder='Unit ID'
                     />
                 </label>
+
+
                 <Form model="motivePower" autoComplete="off">
+
+
                     <Card>  {/*Roster Entry*/}
                         <Title tag='h3'>Roster Entry</Title>
                         <Grid fluid>
-                            <div className={this.isValid(this.props.motivePower.scac) ? 'text-input-container error' : 'text-input-container'}>
-                                <Row className={this.isValid(this.props.motivePower.scac) ? 'valid' : 'error-label'}>
-                                    <Col sm={4} md={4} lg={4}>
-                                            <label>Road Name
-                                                <Control.text
-                                                        id='roadname_id'     
-                                                        onChange={this.handleRoadNameChange.bind(this)}
-                                                        model=".scac"
-                                                        placeholder='Road Name'
-                                                        validators={{
-                                                            required: (val) => val.length,
-                                                            maxLength: (val) => val.length <= 6
-                                                        }}
-                                                />
-                                            </label>
-                                    </Col>
-                                    <Col sm={5} md={5} lg={5}>
-                                        <div className={this.isValid(this.props.motivePower.scac) ? 'valid visibility: hidden' : 'error-label'}
-                                             style={{color: '#666666'}}
-                                        >
-                                            <span>Testing [{this.props.motivePower.scac}] and some more:&nbsp;
-                                            {this.isValid(this.props.motivePower.scac) ? 'valid' : 'error'}</span>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
 
-                            <Row className={this.isValid(this.props.motivePower.number) ? 'valid' : 'error-label'}>
+                            <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
+                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                        <label>Road Name
+                                            <Control.text
+                                                    id='roadname_id'     
+                                                    onChange={this.handleRoadNameChange.bind(this)}
+                                                    model=".scac"
+                                                    placeholder='Road Name'
+                                                    validators={{
+                                                        required: (val) => val.length,
+                                                        maxLength: (val) => val.length <= 6
+                                                    }}
+                                            />                                        
+                                        
+                                            <Errors
+                                                model=".scac"
+                                                show={{pristine: false}}
+                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                messages={{
+                                                    required: "A road name is required.",
+                                                    maxLength: "The road name must be less than 6 characters"
+                                                }}
+                                            />
+                                            <DescriptiveText className="descriptivetext-override">Reporting mark of the railroad</DescriptiveText>
+                                        </label>
+                                    </div>
+                                </Col>
+
+                                <Col sm={4} md={4} lg={4}>
+                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+
                                         <label>Road Number
                                             <Control.text
                                                     id='roadnumber_id'   
@@ -183,85 +200,83 @@ export class MotivePower extends React.Component<Props> {
                                                         required: (val) => val.length
                                                     }}
                                             />
+                                            <Errors
+                                                model=".number"
+                                                show={{pristine: false}}
+                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                messages={{
+                                                    required: "A road number is required."
+                                                }}
+                                            />
+                                            <DescriptiveText className="descriptivetext-override">Unique number for the locomotive</DescriptiveText>
                                         </label>
-                                </Col>
-                                <Col sm={5} md={5} lg={5}>
-                                        <span>Testing [{this.props.motivePower.number}] and some more:&nbsp;
-                                        {this.isValid(this.props.motivePower) ? 'valid' : 'error'}</span>
+                                    </div>
                                 </Col>
                             </Row>
 
-                            <Row className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
-                                <Col sm={4} md={4} lg={4}>
-                                    <label>Comment
-                                        <Control.text
-                                                id='comment_id'
-                                                onChange={this.handleCommentChange.bind(this)}
+                            <Row className='row-height'>
+                                <Col sm={7} md={7} lg={7}>
+                                    <div className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
+                                        <label>Comment
+                                            <Control.textarea
+                                                    id='comment_id'     
+                                                    onChange={this.handleCommentChange.bind(this)}
+                                                    model=".comment"
+                                                    placeholder='Comment'
+                                                    validators={{
+                                                        maxLength: (val) => val.length <= 255
+                                                    }}
+                                            />                                        
+                                            <Errors
                                                 model=".comment"
-                                                placeholder='Comment'/>
-                                    </label>
-                                </Col>
-                                <Col sm={5} md={5} lg={5}>
-                                    <span>Testing [{this.props.motivePower.comment}] and some more:&nbsp;
-                                    {this.isValid(this.props.motivePower.comment) ? 'valid' : 'error'}</span>
+                                                show={{pristine: false}}
+                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                messages={{
+                                                    maxLength: "Comments are limited to 255 characters"
+                                                }}
+                                            />
+                                            <DescriptiveText className="descriptivetext-override">Free-form text comment</DescriptiveText>
+                                        </label>
+                                    </div>
                                 </Col>
                             </Row>
-
 
                         </Grid>
-                        <div>
-                            <Errors
-                                model=".scac"
-                                show={{pristine: false}}
-                                component={(props) => <p className="error-msg">{props.children}</p>}
-                                messages={{
-                                    validLdap: 'LDAP is invalid',
-                                    required: 'Locomotive road name is required',
-                                    maxLength: 'Road name must be less than 7 characters'
-                                }}
-                            />
-
-                            <Errors
-                                model=".number"
-                                show={{pristine: false}}
-                                component={(props) => <p className="error-msg">{props.children}</p>}
-                                messages={{
-                                    validLdap: 'LDAP is invalid',
-                                    required: 'Locomotive number is required'
-                                }}
-                            />
-                        </div>
                     </Card>
 
+
                     <Card> {/*DCC Decoder*/}
-                        <Title tag='h3'>DCC Decoder</Title>
+                        <Title tag='h2'>DCC Decoder</Title>
                         <Grid fluid>
 
-                            <Row className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                            <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <label>DCC Address
-                                        <Control.text
-                                                id='dccaddress_id'
-                                                onChange={this.handleDecoderAddressChange.bind(this)}
+                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                        <label>DCC Address
+                                            <Control.text
+                                                    id='dccaddress_id'
+                                                    onChange={this.handleDecoderAddressChange.bind(this)}
+                                                    model=".decoder.address"
+                                                    placeholder='DCC Address'
+                                                    validators={{
+                                                        required: (val) => val
+                                                    }}
+                                            />
+                                            <Errors
                                                 model=".decoder.address"
-                                                placeholder='DCC Address'
-                                                validators={{
-                                                    required: (val) => val
+                                                show={{pristine: false}}
+                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                messages={{
+                                                    required: "A decoder address is required."
                                                 }}
-                                        />
-                                    </label>
-                                </Col>
-                                <Col sm={5} md={5} lg={5}>
-                                    <span>Testing [{this.props.motivePower.decoder.dccAddress}] and some more:&nbsp;
-                                    {this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error'}</span>
+                                            />
+                                            <DescriptiveText className="descriptivetext-override">Free-form text comment</DescriptiveText>
+                                        </label>
+                                    </div>
                                 </Col>
                             </Row>
 
-
-
                         </Grid>
-                        <div>
-                        </div>
                     </Card>
 
 
@@ -269,11 +284,38 @@ export class MotivePower extends React.Component<Props> {
                         <Title tag='h3'>Prototype Information</Title>
                         <Grid fluid>
 
+                           <Row className='row-height'>
+                                <Col sm={4} md={4} lg={4}>
+                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                        <label>Unit Type
+                                            <Control.text
+                                                    id='unittype_id'
+                                                    onChange={this.handleUnitTypeChange.bind(this)}
+                                                    model=".unitType"
+                                                    placeholder='Unit Type'
+                                                    validators={{
+                                                        required: (val) => val
+                                                    }}
+                                            />
+                                            <Errors
+                                                model=".unitType"
+                                                show={{pristine: false}}
+                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                messages={{
+                                                    required: "A unit type address is required."
+                                                }}
+                                            />
+                                            <DescriptiveText className="descriptivetext-override">Free-form text comment</DescriptiveText>
+                                        </label>
+                                    </div>
+                                </Col>
+                            </Row>
+
                             <Row className={this.isValid(this.props.motivePower.unitType) ? 'valid' : 'error-label'}>
                                 <Col sm={4} md={4} lg={4}>
                                     <label>Unit Type
                                         <Control.text
-                                                id='unittype_id'
+                                                id='unittype_idx'
                                                 onChange={this.handleUnitTypeChange.bind(this)}
                                                 model=".unitType"
                                                 placeholder='Unit Type'
@@ -293,39 +335,44 @@ export class MotivePower extends React.Component<Props> {
 
 
                     <Card> {/*Model Information*/}
-                        <Title tag='h3'>Model Information</Title>
+
+                        <Title tag='h3'>Model Details</Title>
                         <Grid fluid>
 
-                            <Row className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                            <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <label>DCC Address
+                                    <div className={this.isValid(this.props.motivePower.kit.manufacturer) ? 'valid' : 'error-label'}>
                                         <Control.text
-                                                id='dccaddress_id'
-                                                onChange={this.handleDecoderAddressChange.bind(this)}
-                                                model=".decoder.address"
-                                                placeholder='DCC Address'
+                                                id='kit_manufacturer_id'     
+                                                onChange={this.handleManufacturerChange.bind(this)}
+                                                model=".kit.manufacturer"
+                                                placeholder='Manufacturer'
                                                 validators={{
-                                                    required: (val) => val
+                                                    required: (val) => val.length,
+                                                    maxLength: (val) => val.length <= 6
                                                 }}
+                                        />                                        
+                                        <label>Manufacturer</label>
+                                        <Errors
+                                            model=".kit.manufacturer"
+                                            show={{pristine: false}}
+                                            component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                            messages={{
+                                                required: "A <> is required.",
+                                                maxLength: "The <> must be less than 6 characters"
+                                            }}
                                         />
-                                    </label>
-                                </Col>
-                                <Col sm={5} md={5} lg={5}>
-                                    <span>Testing [{this.props.motivePower.decoder.dccAddress}] and some more:&nbsp;
-                                    {this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error'}</span>
+                                        <DescriptiveText className="descriptivetext-override">Manufacturer of the model</DescriptiveText>
+                                    </div>
                                 </Col>
                             </Row>
-
-
-
                         </Grid>
-                        <div>
-                        </div>
                     </Card>
 
 
                     <div style={{justifyContent:'flex-end',display:'flex'}}>
-                        <Link className='button primary' onClick={this.handleButtonClick.bind(this)} id='reset' to='#'>Reset to Default</Link>
+                        <Link className='button secondary' onClick={this.handleFormReset.bind(this)} id='reset' to='#'>Reset to Default</Link>
+                        <Link className='button primary'   onClick={this.handleFormSave.bind(this)} id='save' to='#'>Save</Link>
                     </div>
 
                 </Form>
@@ -333,6 +380,34 @@ export class MotivePower extends React.Component<Props> {
         );
     }
 };
+
+
+
+
+                    // <Card>  {/*Roster Entry*/}
+                    //     <Title tag='h3'>Roster Entry</Title>
+                    //     <Grid fluid>
+
+                    //         <Row className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
+                    //             <Col sm={4} md={4} lg={4}>
+                    //                 <label>Comment
+                    //                     <Control.text
+                    //                             id='comment_id'
+                    //                             onChange={this.handleCommentChange.bind(this)}
+                    //                             model=".comment"
+                    //                             placeholder='Comment'/>
+                    //                 </label>
+                    //             </Col>
+                    //             <Col sm={5} md={5} lg={5}>
+                    //                 <span>Testing [{this.props.motivePower.comment}] and some more:&nbsp;
+                    //                 {this.isValid(this.props.motivePower.comment) ? 'valid' : 'error'}</span>
+                    //             </Col>
+                    //         </Row>
+
+
+                    //     </Grid>
+
+                    // </Card>
 
 
 

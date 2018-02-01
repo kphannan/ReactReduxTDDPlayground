@@ -195,33 +195,33 @@ const motivePower = (state: MotivePowerState = defaultState, action: MotivePower
 
     switch ( action.type ) {
 
-        case 'NOOP':
+        case NOOP_ACTION.type :
             return state;
             
         case 'MOTIVE_POWER_STATE_RESET_TO_DEFAULTS':
             return { ...defaultState };
 
         case 'MOTIVE_POWER_DECODER_ADDRESS_CHANGE':
-            return Object.assign( {}, state
-                                 ,{decoder: action.payload });
+            return {...state, decoder: action.payload };
+            // return Object.assign( {}, state
+            //                      ,{decoder: action.payload });
 
         case 'MOTIVE_POWER_UNIT_TYPE_CHANGE':
-            return Object.assign( {}, state
-                                 ,{unitType: action.payload.unitType });
+            return {...state, unitType: action.payload.unitType };
 
         case 'MOTIVE_POWER_COMMENT_CHANGE':
-            return Object.assign( {}, state
-                                 ,{comment: action.payload.comment });
+            return {...state, comment: action.payload.comment };
 
         case 'MOTIVE_POWER_MANUFACTURER_CHANGE':
-            return Object.assign( {}, state
-                                 ,{model: action.payload });
+            return {...state, model: action.payload };
 
         case 'MOTIVE_POWER_ROAD_NUMBER_CHANGE':
-            return Object.assign( {}, state, action.payload );
+            return{...state, number: action.payload.number, id: action.payload.id };
+            // return Object.assign( {}, state, action.payload );
 
         case 'MOTIVE_POWER_ROAD_NAME_CHANGE':
-            return Object.assign({}, state, action.payload );
+            return{...state, scac: action.payload.scac, id: action.payload.id };
+            // return Object.assign({}, state, action.payload );
 
         default:        
             return state;

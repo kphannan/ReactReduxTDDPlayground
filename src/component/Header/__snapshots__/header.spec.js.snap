@@ -12,13 +12,9 @@ exports[`Header Testing verify against header snapshot 1`] = `
     />
   </div>
   <div
-    className="header-info"
+    className="header-info produc-info"
   >
-    <label
-      className="product-info"
-    >
-      W/MRI
-    </label>
+    W/MRI
   </div>
 </div>
 `;

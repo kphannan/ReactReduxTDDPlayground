@@ -2,16 +2,21 @@
 
 // import React, { Component } from 'react'
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
+
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import PageTitle from '../../component/PageTitle/PageTitle'
 import Icon      from '../../component/Icon/icon'
 import Card      from '../../component/Card/card'
 
+import { rosterEntryActions } from '../../reducer/rosterEntry'
+import type { rosterEntryState } from '../../reducer/rosterEntry';
 
-export default class AddRosterEntry extends React.Component<Props> {
+export class AddRosterEntry extends React.Component<Props> {
 
     // constructor( ...args: any ) {
     //     super( ...args )
@@ -45,6 +50,24 @@ export default class AddRosterEntry extends React.Component<Props> {
     		);
     };
 };
+
+
+const mapStateToProps = (state) => ({
+    motivePower: state.motivePower,
+    forms: state.forms.motivePower
+});
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions:   bindActionCreators(rosterEntryActions, dispatch),
+        // fetchData: (id) => dispatch(id)
+    }
+}
+
+// import { withRouter } from 'react-router-dom'
+// export default withRouter(connect(mapStateToProps)(Something))
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddRosterEntry))
 
 
 

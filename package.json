@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "jest": {
+    "coverageReporters": [
+      "json-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 10,
+        "functions": 10,
+        "lines": 10,
+        "statements": 10
+      }
+    },
     "setupFiles": [
       "<rootDir>/conf/shim.js",
       "<rootDir>/conf/setup.js"
@@ -65,6 +76,8 @@
     "flow-bin": "^0.59.0",
     "jest": "^21.2.1",
     "jest-cli": "^21.2.1",
+    "jest-coverage-ratchet": "^0.2.3",
+    "jest-coverage-validator": "^0.6.9",
     "nyc": "^11.4.1",
     "react-flexbox-grid": "^2.0.0",
     "react-redux": "^5.0.6",

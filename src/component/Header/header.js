@@ -9,11 +9,16 @@ export default class Header extends Component {
               <i className="icon_homedepot"></i>
             </div>
 
-             <div className="header-info">
-                 <label className="product-info">W/MRI</label>
+             <div className="header-info produc-info">
+                 W/MRI
              </div>
        </div>
     );
   }
 }
+
+
+             // <div className="header-info">
+             //     <label className="product-info">W/MRI</label>
+             // </div>
 
