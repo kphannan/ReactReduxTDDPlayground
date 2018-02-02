@@ -42,9 +42,8 @@ export class AddRosterEntry extends React.Component<Props> {
 
 
                 <div style={{justifyContent:'flex-end',display:'flex'}}>
-                    <Link style={{marginRight:'0px'}} className="button tertiary" to="/roster">Cancel</Link>
-                    &npsp;
-                    <Link style={{marginRight:'0px'}} className="button tertiary" to="/roster">Add</Link>
+                    <Link style={{marginRight:'0px'}} className="button tertiary" to="#">Cancel</Link>
+                    <Link style={{marginRight:'0px'}} className="button primary" to="/roster">Add</Link>
                 </div>
     		</div>
     		);

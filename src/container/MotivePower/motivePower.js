@@ -53,6 +53,7 @@ export class MotivePower extends React.Component<Props> {
         handleCommentChange       : Function
         handleUnitTypeChange      : Function
         handleManufacturerChange  : Function
+        entryComponentClassName   : Function
 
     constructor( ...args: any ) {
         super( ...args )
@@ -66,7 +67,8 @@ export class MotivePower extends React.Component<Props> {
         this.handleRoadNumberChange     = this.handleRoadNumberChange.bind(this)
         this.handleCommentChange        = this.handleCommentChange.bind(this)
         this.handleUnitTypeChange       = this.handleUnitTypeChange.bind(this)
-        this.handleManufacturerChange   = this.handleManufacturerChange.bind(this)
+        this.handleManufacturerChange   = this.handleManufacturerChange.bind(this);
+        this.entryComponentClassName    = this.entryComponentClassName.bind(this);
         // this.handleChange = this.handleChange.bind(this) 
     }
 
@@ -118,6 +120,11 @@ export class MotivePower extends React.Component<Props> {
     }
 
 
+    entryComponentClassName( element: any ) {
+
+        // return 'ext-input-container error-label';
+        return 'text-input-container valid';
+    }
 
     // isValid( element: {pristine: boolean, valid: boolean}) {
     isValid( element: any ) {
@@ -160,7 +167,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
                                         <label>Road Name
                                             <Control.text
                                                     id='roadname_id'     
@@ -188,7 +195,7 @@ export class MotivePower extends React.Component<Props> {
                                 </Col>
 
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
 
                                         <label>Road Number
                                             <Control.text
@@ -216,7 +223,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={7} md={7} lg={7}>
-                                    <div className={this.isValid(this.props.motivePower.comment) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.comment)}>
                                         <label>Comment
                                             <Control.textarea
                                                     id='comment_id'     
@@ -251,7 +258,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
                                         <label>DCC Address
                                             <Control.text
                                                     id='dccaddress_id'
@@ -286,7 +293,7 @@ export class MotivePower extends React.Component<Props> {
 
                            <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.isValid(this.props.motivePower.decoder.dccAddress) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
                                         <label>Unit Type
                                             <Control.text
                                                     id='unittype_id'
@@ -341,7 +348,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.isValid(this.props.motivePower.kit.manufacturer) ? 'valid' : 'error-label'}>
+                                    <div className={this.entryComponentClassName(this.props.motivePower.kit.manufacturer)}>
                                         <Control.text
                                                 id='kit_manufacturer_id'     
                                                 onChange={this.handleManufacturerChange.bind(this)}
