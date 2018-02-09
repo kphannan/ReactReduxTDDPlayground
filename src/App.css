@@ -27,17 +27,32 @@
   to { transform: rotate(360deg); }
 }
 
+
+
+
+
+/* Redefine the basic text size in the application from 18px.  Instances of 18px text will be handled individually */
 body {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
-h2, h3 {
-  font-size: 1.17em;
+.semi-bold {
+  font-weight: 600;
 }
 
 
+/* Universal (application centered) error message styling */
 .error-msg {
-  color: red;
+  /*color: red;*/
+  color: #d81118;   /* Red that satisfies accessibility tests */
   font-size: 14px;
   margin: 0px;
 }
+
+
+/* Define the size of a header on a card */
+.card .card-toolbar .card-title h2 {
+
+  font-size: 1.17em;
+}
+

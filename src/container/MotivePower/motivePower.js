@@ -120,17 +120,19 @@ export class MotivePower extends React.Component<Props> {
     }
 
 
-    entryComponentClassName( element: any ) {
-
-        // return 'ext-input-container error-label';
-        return 'text-input-container valid';
-    }
-
     // isValid( element: {pristine: boolean, valid: boolean}) {
     isValid( element: any ) {
 
-        // return !(element.pristine || element.valid);
-        return true;
+        console.log(element)
+        return (element.pristine || element.valid);
+        // return false;
+    }
+
+    entryComponentClassName( element: any ) {
+
+        console.log(element)
+        // return 'ext-input-container error-label';
+        return this.isValid(element) ? 'text-input-container valid' : 'text-input-container error';
     }
 
 
@@ -162,12 +164,12 @@ export class MotivePower extends React.Component<Props> {
 
 
                     <Card>  {/*Roster Entry*/}
-                        <Title tag='h3'>Roster Entry</Title>
+                        <Title tag='h3'>Unit ID [{this.props.motivePower.id}]</Title>
                         <Grid fluid>
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.scac)}>
                                         <label>Road Name
                                             <Control.text
                                                     id='roadname_id'     
@@ -183,7 +185,7 @@ export class MotivePower extends React.Component<Props> {
                                             <Errors
                                                 model=".scac"
                                                 show={{pristine: false}}
-                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                                 messages={{
                                                     required: "A road name is required.",
                                                     maxLength: "The road name must be less than 6 characters"
@@ -195,7 +197,7 @@ export class MotivePower extends React.Component<Props> {
                                 </Col>
 
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.number)}>
 
                                         <label>Road Number
                                             <Control.text
@@ -204,15 +206,17 @@ export class MotivePower extends React.Component<Props> {
                                                     model=".number"
                                                     placeholder='Road Number'
                                                     validators={{
-                                                        required: (val) => val.length
+                                                        required: (val) => val.length,
+                                                        maxLength: (val) => val.length <= 6
                                                     }}
                                             />
                                             <Errors
                                                 model=".number"
                                                 show={{pristine: false}}
-                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                                 messages={{
-                                                    required: "A road number is required."
+                                                    required: "A road number is required.",
+                                                    maxLength: "A road number must be between 1 and 6 digits"
                                                 }}
                                             />
                                             <DescriptiveText className="descriptivetext-override">Unique number for the locomotive</DescriptiveText>
@@ -223,7 +227,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={7} md={7} lg={7}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.comment)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.comment)}>
                                         <label>Comment
                                             <Control.textarea
                                                     id='comment_id'     
@@ -237,7 +241,7 @@ export class MotivePower extends React.Component<Props> {
                                             <Errors
                                                 model=".comment"
                                                 show={{pristine: false}}
-                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                                 messages={{
                                                     maxLength: "Comments are limited to 255 characters"
                                                 }}
@@ -253,12 +257,16 @@ export class MotivePower extends React.Component<Props> {
 
 
                     <Card> {/*DCC Decoder*/}
-                        <Title tag='h2'>DCC Decoder</Title>
+                        {/*<Title tag='h2'>DCC Decoder</Title>*/}
+                        <div class="card-toolbar">
+                            <span class="card-title"><h2>DCC Decoder</h2></span>
+                            <i class="icon_close"></i>
+                        </div>
                         <Grid fluid>
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.decoder.dccAddress)}>
                                         <label>DCC Address
                                             <Control.text
                                                     id='dccaddress_id'
@@ -272,7 +280,7 @@ export class MotivePower extends React.Component<Props> {
                                             <Errors
                                                 model=".decoder.address"
                                                 show={{pristine: false}}
-                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                                 messages={{
                                                     required: "A decoder address is required."
                                                 }}
@@ -284,6 +292,12 @@ export class MotivePower extends React.Component<Props> {
                             </Row>
 
                         </Grid>
+                        {/*
+                        <div class="card-actions right">
+                            <a class="button">Save</a>
+                            <a class="button primary">Continue</a>
+                        </div>
+                        */}
                     </Card>
 
 
@@ -293,7 +307,7 @@ export class MotivePower extends React.Component<Props> {
 
                            <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.decoder.dccAddress)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.unitType)}>
                                         <label>Unit Type
                                             <Control.text
                                                     id='unittype_id'
@@ -307,7 +321,7 @@ export class MotivePower extends React.Component<Props> {
                                             <Errors
                                                 model=".unitType"
                                                 show={{pristine: false}}
-                                                component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                                component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                                 messages={{
                                                     required: "A unit type address is required."
                                                 }}
@@ -348,7 +362,7 @@ export class MotivePower extends React.Component<Props> {
 
                             <Row className='row-height'>
                                 <Col sm={4} md={4} lg={4}>
-                                    <div className={this.entryComponentClassName(this.props.motivePower.kit.manufacturer)}>
+                                    <div className={this.entryComponentClassName(this.props.forms.kit.manufacturer)}>
                                         <Control.text
                                                 id='kit_manufacturer_id'     
                                                 onChange={this.handleManufacturerChange.bind(this)}
@@ -363,7 +377,7 @@ export class MotivePower extends React.Component<Props> {
                                         <Errors
                                             model=".kit.manufacturer"
                                             show={{pristine: false}}
-                                            component={(props) => <p className="error-msg" style={{'line-height': '19px'}}>{props.children}</p>}
+                                            component={(props) => <p className="error-msg" style={{'lineHeight': '19px'}}>{props.children}</p>}
                                             messages={{
                                                 required: "A <> is required.",
                                                 maxLength: "The <> must be less than 6 characters"

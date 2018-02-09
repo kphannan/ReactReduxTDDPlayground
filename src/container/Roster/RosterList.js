@@ -130,6 +130,10 @@ const RosterEntry = (props) => {
                 </Col>
 
                 <Col md={1}>
+                    {props.rosterEntry.decoder.dccAddress}
+                </Col>
+
+                <Col md={1}>
                     {props.rosterEntry.kit.manufacturer}
                 </Col>
 

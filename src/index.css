@@ -1,3 +1,6 @@
+
+
+/* Redefine the basic text size from 18px.  Instances of 18px text will be handled individually */
 body {
   margin: 0 20px;
   padding: 0;

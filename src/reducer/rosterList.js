@@ -21,22 +21,40 @@ export type RosterListState = {
 };
 
 var defaultState: RosterListState = [{
-    id: "el 7777",
-    scac:  "EL",
-    number:  "7777",
-    unitType:  "GP35",
-    comment:  "",
-    kit: {
-        manufacturer: "Kato",
-    },
-    decoder: {
-        dccAddress:  "8888",
-        family:  "",
-        model:  "DH-142",
+        id: "EL 7777",
+        scac:  "EL",
+        number:  "7777",
+        unitType:  "GP35",
         comment:  "",
-        filename:  ""
+        kit: {
+            manufacturer: "Kato",
+        },
+        decoder: {
+            dccAddress:  "8888",
+            family:  "",
+            model:  "DH-142",
+            comment:  "",
+            filename:  ""
+        }
+    },
+    {
+        id: "EL 5860",
+        scac:  "EL",
+        number:  "5860",
+        unitType:  "GP35",
+        comment:  "",
+        kit: {
+            manufacturer: "Kato",
+        },
+        decoder: {
+            dccAddress:  "5860",
+            family:  "",
+            model:  "DH-142",
+            comment:  "",
+            filename:  ""
+        }
     }
-}];
+];
 
 
 type NoopAction = {

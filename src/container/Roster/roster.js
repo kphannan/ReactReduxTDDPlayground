@@ -18,7 +18,7 @@ export class Roster extends Component {
       return (
 
       <div>
-        <Title tag="h1">Roster</Title>
+        <Title tag="h1">Roster Entry</Title>
           <p><Icon name="information_outlined" color="orange" styles={{ paddingRight : 10 }}/>
               Note: If your product is made of multiple microservices,
               each of them should be added as a separate application</p>

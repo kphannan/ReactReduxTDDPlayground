@@ -9,6 +9,8 @@
 # testing
 /coverage
 /flow-typed
+# --- testing / coverage report output
+.nyc_output
 
 # production
 /build

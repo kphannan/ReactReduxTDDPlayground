@@ -10,10 +10,10 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 
 import configureStore from './store/configureStore'
-import 'ux-styleguide/dist/ux-styleguide.min.css';
 // import { Tables } from 'ux-react-styleguide';
 // <script src="https://pages.github.homedepot.com/ux/ux-styleguide/dist/ux-styleguide.min.js"></script>
 import './index.css';
+import 'ux-styleguide/dist/ux-styleguide.min.css';
 
 const store = configureStore();
 
