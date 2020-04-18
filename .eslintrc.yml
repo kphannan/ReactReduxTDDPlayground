@@ -19,7 +19,12 @@ rules:
     - unix
   quotes:
     - error
-    - double
+    - single
   semi:
     - error
     - always
+  no-console:
+    - warn    
+
+  no-undef:
+    - warn

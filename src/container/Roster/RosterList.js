@@ -16,22 +16,23 @@ import Title from '../../component/Title/title';
 
 
 import { rosterListActions } from '../../reducer/rosterList'
-import type { RosterListState } from '../../reducer/rosterList';
+// import type { RosterListState } from '../../reducer/rosterList';
+
 
 
 
 // ----- React types
-type ReactOnChangeEvent = {
-    target: {
-        value: string
-    }
-}
+// type ReactOnChangeEvent = {
+//     target: {
+//         value: string
+//     }
+// }
 
-type ReactOnClickEvent = {
-    target: {
-        value: string
-    }
-}
+// type ReactOnClickEvent = {
+//     target: {
+//         value: string
+//     }
+// }
 
 type Props = {
     rosterEntry: RosterEntryState,

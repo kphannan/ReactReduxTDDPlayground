@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import motivePower from '../reducer/motivePower'
 import rosterList from '../reducer/rosterList'
 
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createForms } from 'react-redux-form';
 

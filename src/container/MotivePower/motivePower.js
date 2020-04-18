@@ -432,53 +432,7 @@ export class MotivePower extends React.Component<Props> {
 
 
 
-                        // <Row className={this.isValid(this.props.motivePower.kit.manufacturer) ? 'valid' : 'error-label'}>
-                        //     <Col sm={4} md={4} lg={4}>
-                        //         <label>Manufacturer
-                        //             <Control.text
-                        //                     id='manufacturer_id'
-                        //                     onChange={this.handleManufacturerChange.bind(this)}
-                        //                     model=".kit.manufacturer"
-                        //                     placeholder='Manufacturer'
-                        //             />
-                        //         </label>
-                        //     </Col>
-                        //     <Col sm={5} md={5} lg={5}>
-                        //         <span>Testing [{this.props.motivePower.kit.manufacturer}] and some more:
-                        //         {this.isValid(this.props.motivePower.kit.manufacturer) ? 'valid' : 'error'}</span>
-                        //     </Col>
-                        // </Row>
 
-
-
-                        // <Row className={this.isValid(this.props.forms.motivePower.) ? 'valid' : 'error-label'}>
-                        //     <Col sm={4} md={4} lg={4}>
-                        //     </Col>
-                        //     <Col sm={5} md={5} lg={5}>
-                        //         <span>Testing [{this.props.motivePower.id}] and some more:
-                        //         {tthis.isValid(this.props.forms.motivePower.) ? 'valid' : 'error'}</span>
-                        //     </Col>
-                        // </Row>
-
-
-
-                        // <Row className={this.props.forms.motivePower..valid ? 'valid' : 'error-label'}>
-                        //     <Col sm={4} md={4} lg={4}>
-                        //         <div className={this.props.forms.motivePower..valid ? 'valid' : 'error-label'}>
-                        //         </div>
-                        //     </Col>
-                        //     <Col sm={5} md={5} lg={5}>
-                        //         <div className={this.isValid(this.props.forms.motivePower.) ? 'valid visibility: hidden' : 'error-label'}
-                        //              style={{color: '#666666'}}
-                        //         >
-                        //             <span>Testing [{this.props.motivePower.id}] and some more:
-                        //             {this.props.forms.motivePower..valid ? 'valid' : 'error'}</span>
-                        //         </div>
-                        //     </Col>
-                        // </Row>
-
-
-                // <input type='submit' id='reset'>Reset to Default</input>
 
 // export default MotivePower;
 

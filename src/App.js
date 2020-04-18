@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
-// import { MemoryRouter as Router } from 'react-router-dom'
-import './App.css';
-
-import Header from './component/Header/header';
+import { Component } from 'react';
+import React from 'react';
 import Main from './container/Main/main';
-
-
-
+import Header from './component/Header/header'
+import './App.css';
 
 
 class App extends Component {
-  render() {
-    return (
-        <div id="app">
-          <Header />
-  	      <Main />
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div id="app">
+                <Header />
+                <Main />
+            </div>
+        );
+    }
 }
 
 

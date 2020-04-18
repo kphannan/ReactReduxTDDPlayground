@@ -14,7 +14,7 @@ import Icon      from '../../component/Icon/icon'
 import Card      from '../../component/Card/card'
 
 import { rosterEntryActions } from '../../reducer/rosterEntry'
-import type { rosterEntryState } from '../../reducer/rosterEntry';
+// import type { rosterEntryState } from '../../reducer/rosterEntry';
 
 export class AddRosterEntry extends React.Component<Props> {
 

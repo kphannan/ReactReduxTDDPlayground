@@ -49,6 +49,12 @@ body {
   margin: 0px;
 }
 
+.error-label {
+    /*color: #ed1c24!important;*/
+    color: #d81118 !important;
+}
+
+
 
 /* Define the size of a header on a card */
 .card .card-toolbar .card-title h2 {
